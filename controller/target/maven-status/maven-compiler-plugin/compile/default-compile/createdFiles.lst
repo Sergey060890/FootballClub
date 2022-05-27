@@ -1,0 +1,5 @@
+servlet\DeleteTeamServlet.class
+servlet\EditTeamServlet.class
+constans\Constans.class
+servlet\StartServlet.class
+servlet\TeamServlet.class

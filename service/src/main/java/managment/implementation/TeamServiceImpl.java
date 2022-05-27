@@ -11,8 +11,9 @@ import footballclub.entity.Team;
 import managment.interfaces.TeamService;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class TeamServiceImpl implements TeamService {
@@ -98,13 +99,11 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public List<Player> showAllPlayerTeamInfo(Team team) {
-        List<Player> players = new ArrayList<>();
-        System.out.println("All team players: " + team.getTeam_name());
-        for (Player p : PlayerServiceImpl.players
+    public Set<Player> showAllPlayerTeamInfo(Integer id) {
+        Set<Player> players = new HashSet<>();
+        for (Player p : enityDaoImplPlayer.findAll()
         ) {
-            if (p.getTeamPlayer() == team) {
-                System.out.println(p);
+            if (p.getTeamPlayer().getTeam_id() == id) {
                 players.add(p);
             }
         }

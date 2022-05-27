@@ -7,6 +7,7 @@ import footballclub.entity.Team;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Set;
 
 public interface TeamService {
     /**
@@ -45,7 +46,7 @@ public interface TeamService {
      * Print AllPlayerInfo
      */
 
-    List<Player> showAllPlayerTeamInfo(Team team);
+    Set<Player> showAllPlayerTeamInfo(Integer id);
 
     /**
      * UpdateTeam
