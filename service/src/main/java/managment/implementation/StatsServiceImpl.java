@@ -17,8 +17,8 @@ public class StatsServiceImpl implements StatsService {
         System.out.println("********Player stats********");
         System.out.println("Player: " + player.getPlayer_name() + " "
                 + player.getPlayer_surname());
-        System.out.println("Team: " + player.getTeam().getTeam_name() + " "
-                + player.getTeam().getCity());
+        System.out.println("Team: " + player.getTeamPlayer().getTeam_name() + " "
+                + player.getTeamPlayer().getCity());
 
         int countMatch = 0;
         for (Game g : GameServiceImpl.games
@@ -82,7 +82,7 @@ public class StatsServiceImpl implements StatsService {
         int countGame = 0;
         for (Game g : GameServiceImpl.games
         ) {
-            if (g.getTeam() == team) {
+            if (g.getTeamGame() == team) {
                 countGame++;
             }
         }
@@ -92,7 +92,7 @@ public class StatsServiceImpl implements StatsService {
         int countGameWin = 0;
         for (Game g : GameServiceImpl.games
         ) {
-            if (g.getTeam() == team && g.getResult() == RESULT_GAME_WIN) {
+            if (g.getTeamGame() == team && g.getResult() == RESULT_GAME_WIN) {
                 System.out.println(g.getOpponent_name() + " "
                         + g.getGoal_score() +
                         ":" + g.getGoals_conceded());
@@ -106,7 +106,7 @@ public class StatsServiceImpl implements StatsService {
         int countGameDraw = 0;
         for (Game g : GameServiceImpl.games
         ) {
-            if (g.getTeam() == team && g.getResult() == RESULT_GAME_DRAW) {
+            if (g.getTeamGame() == team && g.getResult() == RESULT_GAME_DRAW) {
                 System.out.println(g.getOpponent_name() + " " + g.getGoal_score() +
                         ":" + g.getGoals_conceded());
                 countGameDraw++;
@@ -119,7 +119,7 @@ public class StatsServiceImpl implements StatsService {
         int countGameLose = 0;
         for (Game g : GameServiceImpl.games
         ) {
-            if (g.getTeam() == team && g.getResult() == RESULT_GAME_LOSE) {
+            if (g.getTeamGame() == team && g.getResult() == RESULT_GAME_LOSE) {
                 System.out.println(g.getOpponent_name() + " " + g.getGoal_score() +
                         ":" + g.getGoals_conceded());
                 countGameDraw++;
@@ -131,7 +131,7 @@ public class StatsServiceImpl implements StatsService {
         int countGoalScore = 0;
         for (Game g : GameServiceImpl.games
         ) {
-            if (g.getTeam() == team) {
+            if (g.getTeamGame() == team) {
                 countGoalScore += g.getGoal_score();
             }
         }
@@ -141,7 +141,7 @@ public class StatsServiceImpl implements StatsService {
         int countGoalConceded = 0;
         for (Game g : GameServiceImpl.games
         ) {
-            if (g.getTeam() == team) {
+            if (g.getTeamGame() == team) {
                 countGoalConceded += g.getGoals_conceded();
             }
         }

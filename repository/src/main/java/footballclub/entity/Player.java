@@ -59,7 +59,7 @@ public class Player implements Serializable {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "team_id")
-    private Team team;
+    private Team teamPlayer;
 
     /**
      * Connection with table "game"

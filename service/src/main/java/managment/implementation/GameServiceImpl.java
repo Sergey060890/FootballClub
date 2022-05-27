@@ -1,11 +1,11 @@
 package managment.implementation;
 
-import footballclub.dao.EnityDaoImplGame;
-import footballclub.dao.EnityDaoImplGoalConceded;
-import footballclub.dao.EnityDaoImplGoalScore;
-import footballclub.dao.EnityDaoImplRedCard;
-import footballclub.dao.EnityDaoImplSubstitution;
-import footballclub.dao.EnityDaoImplYellowCard;
+import footballclub.dao.implementations.EnityDaoImplGame;
+import footballclub.dao.implementations.EnityDaoImplGoalConceded;
+import footballclub.dao.implementations.EnityDaoImplGoalScore;
+import footballclub.dao.implementations.EnityDaoImplRedCard;
+import footballclub.dao.implementations.EnityDaoImplSubstitution;
+import footballclub.dao.implementations.EnityDaoImplYellowCard;
 import footballclub.entity.Game;
 import footballclub.entity.GoalConceded;
 import footballclub.entity.GoalScore;
@@ -29,27 +29,22 @@ import static managment.ConstansManager.*;
 
 public class GameServiceImpl implements GameService {
     EnityDaoImplGame enityDaoImplGame =
-            new EnityDaoImplGame(Game.class);
+            new EnityDaoImplGame();
     EnityDaoImplGoalScore enityDaoImplGoalScore =
-            new EnityDaoImplGoalScore(GoalScore.class);
+            new EnityDaoImplGoalScore();
     EnityDaoImplGoalConceded enityDaoImplGoalConceded =
-            new EnityDaoImplGoalConceded(GoalConceded.class);
+            new EnityDaoImplGoalConceded();
     EnityDaoImplYellowCard enityDaoImplYellowCard =
-            new EnityDaoImplYellowCard(YellowCard.class);
+            new EnityDaoImplYellowCard();
     EnityDaoImplRedCard enityDaoImplRedCard =
-            new EnityDaoImplRedCard(RedCard.class);
+            new EnityDaoImplRedCard();
     EnityDaoImplSubstitution enityDaoImplSubstitution =
-            new EnityDaoImplSubstitution(Substitution.class);
+            new EnityDaoImplSubstitution();
 
     public static List<Game> games = new ArrayList<>();
     public static List<GoalScore> goalScores = new ArrayList<>();
     public static List<YellowCard> yellowCards = new ArrayList<>();
     public static List<RedCard> redCards = new ArrayList<>();
-
-
-    public GameServiceImpl(EnityDaoImplGame enityDaoImplGame) {
-        this.enityDaoImplGame = enityDaoImplGame;
-    }
 
     @Override
     public Game createGame(LocalDate date, Team team,
@@ -57,12 +52,12 @@ public class GameServiceImpl implements GameService {
         Set<Player> players1 = new HashSet<>();
         for (Player p : lineUpTeam
         ) {
-            if (p.getTeam() == team) {
+            if (p.getTeamPlayer() == team) {
                 players1.add(p);
             }
         }
         Game game = Game.builder()
-                .team(team)
+                .teamGame(team)
                 .game_date(date)
                 .players(players1)
                 .opponent_name(opponentTeam.getTeam_name())
@@ -72,7 +67,7 @@ public class GameServiceImpl implements GameService {
                 .yellow_card_score(YELLOW_CARD_SCORE)
                 .red_card_score(RED_CARD_SCORE)
                 .build();
-        enityDaoImplGame.insert(game);
+        enityDaoImplGame.create(game);
         games.add(game);
         return game;
     }
@@ -84,7 +79,7 @@ public class GameServiceImpl implements GameService {
                 .player(player)
                 .goal_time(time)
                 .build();
-        enityDaoImplGoalScore.insert(goal);
+        enityDaoImplGoalScore.create(goal);
         return goal;
     }
 
@@ -95,7 +90,7 @@ public class GameServiceImpl implements GameService {
                 .player(player)
                 .conceded_time(time)
                 .build();
-        enityDaoImplGoalConceded.insert(goalConc);
+        enityDaoImplGoalConceded.create(goalConc);
         return goalConc;
     }
 
@@ -106,7 +101,7 @@ public class GameServiceImpl implements GameService {
                 .player(player)
                 .card_time(time)
                 .build();
-        enityDaoImplYellowCard.insert(yc);
+        enityDaoImplYellowCard.create(yc);
         return yc;
     }
 
@@ -117,7 +112,7 @@ public class GameServiceImpl implements GameService {
                 .player(player)
                 .card_time(time)
                 .build();
-        enityDaoImplRedCard.insert(rc);
+        enityDaoImplRedCard.create(rc);
         return rc;
     }
 
@@ -129,7 +124,7 @@ public class GameServiceImpl implements GameService {
                 .playerOut(playerOut)
                 .subs_time(time)
                 .build();
-        enityDaoImplSubstitution.insert(subs);
+        enityDaoImplSubstitution.create(subs);
         return subs;
     }
 
@@ -151,7 +146,7 @@ public class GameServiceImpl implements GameService {
                                          Set<Substitution> subs) {
         System.out.println("Data game: " + game.getGame_date());
         System.out.println("----------------------------");
-        System.out.println(game.getTeam().getTeam_name() +
+        System.out.println(game.getTeamGame().getTeam_name() +
                 " VS " + game.getOpponent_name());
         System.out.println("----------------------------");
         System.out.println("GAME PROGRESS:");

@@ -33,7 +33,7 @@ public class Utils {
                 .country(PLAYER_COUNTRY)
                 .age(PLAYER_AGE)
                 .position(PLAYER_POSITION)
-                .team(team)
+                .teamPlayer(team)
                 .build();
     }
 
@@ -44,13 +44,13 @@ public class Utils {
                 .country(PLAYER_SUBS_COUNTRY)
                 .age(PLAYER_SUBS_AGE)
                 .position(PLAYER_SUBS_POSITION)
-                .team(team)
+                .teamPlayer(team)
                 .build();
     }
 
     public static Game createGame(Team team, Set<Player> players) {
         return Game.builder()
-                .team(team)
+                .teamGame(team)
                 .game_date(GAME_DATE_1)
                 .players(players)
                 .opponent_name(OPPONENT_NAME)

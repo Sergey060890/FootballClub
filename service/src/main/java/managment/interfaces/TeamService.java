@@ -1,10 +1,11 @@
 package managment.interfaces;
 
 
+import DTO.TeamDTO;
 import footballclub.entity.Player;
 import footballclub.entity.Team;
 
-import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface TeamService {
@@ -24,17 +25,39 @@ public interface TeamService {
     /**
      * Delete player with team
      */
-    void deletePlayerWithTeam(Player player)
-            throws InvocationTargetException,
-            NoSuchMethodException, IllegalAccessException;
+//    void deletePlayerWithTeam(Player player)
+//            throws InvocationTargetException,
+//            NoSuchMethodException, IllegalAccessException;
+
+//    /**
+//     * Print AllTeam
+//     */
+//    List<Team> showAllTeam();
 
     /**
-     * Print OnePlayerInfo
+     * FindAllTEam
      */
-    String showOnePlayerInfo(Player player);
+    List<TeamDTO> findAll();
+
+    Player showOnePlayerInfo(Integer id) throws SQLException;
 
     /**
-     * Print OnePlayerInfo
+     * Print AllPlayerInfo
      */
+
     List<Player> showAllPlayerTeamInfo(Team team);
+
+    /**
+     * UpdateTeam
+     */
+    void updateTeam(Integer id, String teamName, String teamCity,
+                    String teamCountry, String teamStadium,
+                    String teamCoach) throws SQLException;
+
+    /**
+     * DeleteTeam
+     */
+    void deleteTeam(Integer id) throws SQLException;
+
+    TeamDTO findTeamById(Integer id) throws SQLException;
 }

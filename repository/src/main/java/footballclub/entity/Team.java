@@ -10,12 +10,15 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Class Team
@@ -28,7 +31,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @ToString
 @Builder
-public class Team implements Serializable {
+public class Team {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,6 +52,16 @@ public class Team implements Serializable {
 
     @Column(name = "coach")
     private String coach;
+
+    @OneToMany(mappedBy = "teamPlayer", fetch = FetchType.EAGER)//Eager?
+    @ToString.Exclude
+    @Builder.Default
+    private Set<Player> players = new HashSet<>();
+
+    @OneToMany(mappedBy = "teamGame", fetch = FetchType.EAGER)//Eager?
+    @ToString.Exclude
+    @Builder.Default
+    private Set<Game> games = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {

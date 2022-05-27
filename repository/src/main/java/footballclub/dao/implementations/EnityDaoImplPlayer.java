@@ -1,5 +1,6 @@
-package footballclub.dao;
+package footballclub.dao.implementations;
 
+import footballclub.dao.interfaces.PlayerDao;
 import footballclub.entity.Player;
 import footballclub.entity.Team;
 import footballclub.util.HibernateUtil;
@@ -7,11 +8,11 @@ import org.hibernate.HibernateException;
 
 import javax.persistence.EntityManager;
 
-public class EnityDaoImplPlayer extends EntityDaoImpl<Player> {
+public class EnityDaoImplPlayer extends EntityDaoImpl<Player> implements PlayerDao {
     private static EntityManager em;
 
-    public EnityDaoImplPlayer(Class<Player> clazz) {
-        super(clazz);
+    public EnityDaoImplPlayer() {
+        super(Player.class,HibernateUtil.getEntityManager());
     }
 
     public void addPlayerTeamID(Integer team_id, Player player) {
@@ -22,7 +23,7 @@ public class EnityDaoImplPlayer extends EntityDaoImpl<Player> {
             Player player1 = Player.builder()
                     .player_name(player.getPlayer_name())
                     .player_surname(player.getPlayer_surname())
-                    .team(team)
+                    .teamPlayer(team)
                     .age(player.getAge())
                     .country(player.getCountry())
                     .position(player.getPosition())

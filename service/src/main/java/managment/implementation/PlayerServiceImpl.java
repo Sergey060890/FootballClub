@@ -1,9 +1,13 @@
 package managment.implementation;
 
-import footballclub.dao.EnityDaoImplPlayer;
+import footballclub.dao.implementations.EnityDaoImplPlayer;
+import footballclub.dao.interfaces.PlayerDao;
 import footballclub.entity.Player;
 import footballclub.entity.Team;
 import managment.interfaces.PlayerService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author SERGEY060890
@@ -11,12 +15,10 @@ import managment.interfaces.PlayerService;
  * @create 2022-05-03 13:17
  */
 public class PlayerServiceImpl implements PlayerService {
-    EnityDaoImplPlayer enityDaoImplPlayer =
-            new EnityDaoImplPlayer(Player.class);
+    PlayerDao enityDaoImplPlayer =
+            new EnityDaoImplPlayer();
 
-    public PlayerServiceImpl(EnityDaoImplPlayer enityDaoImplPlayer) {
-        this.enityDaoImplPlayer = enityDaoImplPlayer;
-    }
+    public static List<Player> players = new ArrayList<>();
 
     @Override
     public Player createPlayer(String name, String surname,
@@ -29,13 +31,14 @@ public class PlayerServiceImpl implements PlayerService {
                 .age(age)
                 .position(position)
                 .build();
-        enityDaoImplPlayer.insert(player);
+        enityDaoImplPlayer.create(player);
+        players.add(player);
         return player;
     }
 
     @Override
     public void updateTeam(Player player, Team team) {
-        player.setTeam(team);
+        player.setTeamPlayer(team);
         enityDaoImplPlayer.update(player);
     }
 

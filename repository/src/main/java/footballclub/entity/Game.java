@@ -79,7 +79,7 @@ public class Game implements Serializable {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "team_id")
-    private Team team;
+    private Team teamGame;
 
     @Override
     public boolean equals(Object o) {
