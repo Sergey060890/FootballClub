@@ -27,10 +27,10 @@
         <tr>
             <th>Название</th>
             <th>Город</th>
-            <th>Страна</th>
-            <th>Стадион</th>
-            <th>Тренер</th>
-            <th colspan="3">Действия</th>
+<%--            <th>Страна</th>--%>
+<%--            <th>Стадион</th>--%>
+<%--            <th>Тренер</th>--%>
+            <th colspan="3"><center>Действия</center></th>
         </tr>
 
             <jsp:useBean id="teams" scope="request" type="java.util.List"/>
@@ -38,12 +38,12 @@
         <tr>
             <td>${team.team_name}</td>
             <td>${team.city}</td>
-            <td>${team.country}</td>
-            <td>${team.stadium}</td>
-            <td>${team.coach}</td>
+<%--            <td>${team.country}</td>--%>
+<%--            <td>${team.stadium}</td>--%>
+<%--            <td>${team.coach}</td>--%>
 
             <td>
-                <a class="gradient-button" href='<c:url value="selection?id=${team.team_id}" />'>Выбрать</a>
+                <a class="gradient-button" href='<c:url value="player?id=${team.team_id}" />'>Выбрать</a>
             </td>
 
             <td>

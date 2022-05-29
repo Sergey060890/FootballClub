@@ -20,11 +20,9 @@
 </style>
 <body>
 <div class="topnav">
-    <a class="active" href="index.jsp">Главная страница</a>
+    <a class="active" href="index.jsp">Main page</a>
 
-    <a href="TeamServlet">Мои команды</a>
-
-    <a href="https://www.euro-football.ru/">Новости футбола</a>
+    <a href="https://www.euro-football.ru/">Football news</a>
 </div>
 </body>
 </html>

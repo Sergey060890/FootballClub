@@ -17,6 +17,6 @@
     <input name="coach" placeholder="Введите имя и фамилию тренера" style="width: 250px;" /><br><br>
     <input type="submit" value="Создать" />
 </form>
-<a href="team.jsp">Вернуться назад</a>
+<a href="TeamServlet">Вернуться назад</a>
 </body>
 </html>

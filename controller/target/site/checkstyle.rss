@@ -25,8 +25,8 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2022</copyright>
     <item>
-      <title>File: 5,
-             Errors: 74,
+      <title>File: 11,
+             Errors: 123,
              Warnings: 0,
              Infos: 0
       </title>
@@ -46,6 +46,48 @@ under the License.
           <tbody>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#servlet.DeletePlayerServlet.java">servlet/DeletePlayerServlet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#servlet.CreateTeamServlet.java">servlet/CreateTeamServlet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#servlet.PlayerServlet.java">servlet/PlayerServlet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#servlet.TeamServlet.java">servlet/TeamServlet.java</a>
                 </td>
                 <td>
@@ -55,7 +97,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  17
+                  5
                 </td>
               </tr>
                           <tr>
@@ -74,6 +116,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#servlet.CreatePlayerServlet.java">servlet/CreatePlayerServlet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  20
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#servlet.DeleteTeamServlet.java">servlet/DeleteTeamServlet.java</a>
                 </td>
                 <td>
@@ -83,7 +139,35 @@ under the License.
                   0
                 </td>
                 <td>
-                  8
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#servlet.SelectionTeamServlet.java">servlet/SelectionTeamServlet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  13
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#servlet.PlayerLineUpServlet.java">servlet/PlayerLineUpServlet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
                 </td>
               </tr>
                           <tr>

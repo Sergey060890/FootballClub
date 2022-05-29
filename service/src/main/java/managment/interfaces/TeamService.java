@@ -61,4 +61,7 @@ public interface TeamService {
     void deleteTeam(Integer id) throws SQLException;
 
     TeamDTO findTeamById(Integer id) throws SQLException;
+
+    Team findTeamId(Integer id) throws SQLException;
+
 }

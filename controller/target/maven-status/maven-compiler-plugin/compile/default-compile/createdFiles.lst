@@ -1,5 +1,11 @@
+servlet\DeletePlayerServlet.class
 servlet\DeleteTeamServlet.class
 servlet\EditTeamServlet.class
+servlet\PlayerServlet.class
 constans\Constans.class
-servlet\StartServlet.class
 servlet\TeamServlet.class
+servlet\CreatePlayerServlet.class
+servlet\StartServlet.class
+servlet\CreateTeamServlet.class
+servlet\PlayerLineUpServlet.class
+servlet\SelectionTeamServlet.class

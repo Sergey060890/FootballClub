@@ -71,16 +71,20 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public TeamDTO findTeamById(Integer id) throws SQLException {
+    public TeamDTO findTeamById(Integer id) throws SQLException  {
         return TeamMapper.mapFrom(enityDaoImplTeam.findOne(id));
+    }
+
+    @Override
+    public Team findTeamId(Integer id) throws SQLException {
+        Team team = enityDaoImplTeam.findOne(id);
+        return team;
     }
 
     @Override
     public Player addPlayerInTeam(Player player, Team team) {
         player.setTeamPlayer(team);
         enityDaoImplPlayer.update(player);
-        System.out.println("A new player has been added to the team: " +
-                player.getPlayer_name() + " " + player.getPlayer_surname());
         return player;
     }
 

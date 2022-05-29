@@ -3,10 +3,11 @@
 <head>
     <title>Главная Страница</title>
 </head>
-<body>
+<body style="background: url(image/pexelsphoto1594932.jpeg)">
 <%@include file="headerTeam.jsp" %>
 <center>
-    <h2>Футбольный клуб</h2>
+    <h2>FOOTBALL CLUB</h2>
+    <a class="gradient-button1" href="TeamServlet">MY TEAM</a>
 </center>
 </body>
 </html>

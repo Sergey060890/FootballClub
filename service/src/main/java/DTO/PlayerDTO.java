@@ -1,6 +1,5 @@
 package DTO;
 
-import footballclub.entity.Team;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,5 +18,5 @@ public class PlayerDTO implements Serializable {
     private String country;
     private Integer age;
     private String position;
-    private Team team;
+//    private TeamDTO team;
 }
