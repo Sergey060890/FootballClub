@@ -23,12 +23,12 @@
 <center>
     <table border="3" width="50%">
 
-        <caption><b>Мой cостав</b></caption>
+        <caption><b>My lineup</b></caption>
         <tr>
-            <th>Имя</th>
-            <th>Фамилия</th>
-            <th>Позиция</th>
-            <th colspan="3">Действия</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Position</th>
+            <th colspan="3"><center>Actions</center></th>
         </tr>
 
         <jsp:useBean id="id" scope="request" type="java.lang.Integer"/>
@@ -55,15 +55,15 @@
             </td>
 
             <td>
-                <a class="gradient-button" href='<c:url value="createPlayer?id=${player.player_id}" />'>Информация</a>
+                <a class="gradient-button" href='<c:url value="informationPlayer?id=${player.player_id}" />'>INFORMATION</a>
             </td>
 
             <td>
-                <a class="gradient-button" href='<c:url value="edit?id=${team.team_id}" />'>Редактировать</a>
+                <a class="gradient-button" href='<c:url value="editPlayer?id=${player.player_id}" />'>EDIT</a>
             </td>
 
             <td>
-                <a class="gradient-button" href='<c:url value="deletePlayer?id=${player.player_id}" />'>Удалить игрока</a>
+                <a class="gradient-button" href='<c:url value="deletePlayer?id=${player.player_id}" />'>DELETE PLAYER</a>
             </td>
 
         </tr>
@@ -71,8 +71,8 @@
 
     </table>
 
-    <a class="gradient-button1" href='<c:url value="createPlayer?id=${id}" />'>Добавить игрока</a>
-    <a class="gradient-button1" href="TeamServlet">Назад</a>
+    <a class="gradient-button1" href='<c:url value="createPlayer?id=${id}" />'>ADD PLAYER</a>
+    <a class="gradient-button1" href="TeamServlet">BACK</a>
 
 </center>
 </body>

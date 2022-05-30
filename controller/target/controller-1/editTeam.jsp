@@ -32,6 +32,6 @@
 
     <input type="submit" value="Сохранить" />
 </form>
-<a href="TeamServlet">Вернуться назад</a>
+<a class="gradient-button" href="TeamServlet" />Вернуться назад</a>
 </body>
 </html>

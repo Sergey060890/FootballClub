@@ -1,11 +1,13 @@
 D:\FootballClub\controller\src\main\java\constans\Constans.java
-D:\FootballClub\controller\src\main\java\servlet\DeleteTeamServlet.java
 D:\FootballClub\controller\src\main\java\servlet\PlayerLineUpServlet.java
 D:\FootballClub\controller\src\main\java\servlet\SelectionTeamServlet.java
 D:\FootballClub\controller\src\main\java\servlet\DeletePlayerServlet.java
+D:\FootballClub\controller\src\main\java\servlet\EditPlayerServlet.java
 D:\FootballClub\controller\src\main\java\servlet\PlayerServlet.java
 D:\FootballClub\controller\src\main\java\servlet\TeamServlet.java
 D:\FootballClub\controller\src\main\java\servlet\CreateTeamServlet.java
-D:\FootballClub\controller\src\main\java\servlet\StartServlet.java
 D:\FootballClub\controller\src\main\java\servlet\EditTeamServlet.java
+D:\FootballClub\controller\src\main\java\servlet\PlayerInformationServlet.java
+D:\FootballClub\controller\src\main\java\servlet\DeleteTeamServlet.java
+D:\FootballClub\controller\src\main\java\servlet\StartServlet.java
 D:\FootballClub\controller\src\main\java\servlet\CreatePlayerServlet.java

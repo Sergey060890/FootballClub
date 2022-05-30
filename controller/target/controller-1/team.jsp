@@ -22,15 +22,15 @@
 <body>
 <%@include file="headerTeam.jsp" %>
 <center>
-    <h2>Управление командами</h2>
+    <h2>Team management</h2>
     <table border="3" width="50%">
         <tr>
-            <th>Название</th>
-            <th>Город</th>
+            <th>Team name</th>
+            <th>City</th>
 <%--            <th>Страна</th>--%>
 <%--            <th>Стадион</th>--%>
 <%--            <th>Тренер</th>--%>
-            <th colspan="3"><center>Действия</center></th>
+            <th colspan="3"><center>Actions</center></th>
         </tr>
 
             <jsp:useBean id="teams" scope="request" type="java.util.List"/>
@@ -43,23 +43,23 @@
 <%--            <td>${team.coach}</td>--%>
 
             <td>
-                <a class="gradient-button" href='<c:url value="player?id=${team.team_id}" />'>Выбрать</a>
+                <a class="gradient-button" href='<c:url value="player?id=${team.team_id}" />'>SELECT</a>
             </td>
 
             <td>
-                <a class="gradient-button" href='<c:url value="edit?id=${team.team_id}" />'>Редактировать</a>
+                <a class="gradient-button" href='<c:url value="edit?id=${team.team_id}" />'>EDIT</a>
             </td>
 
             <td>
-                <a class="gradient-button" href='<c:url value="delete?id=${team.team_id}" />'>Удалить</a>
+                <a class="gradient-button" href='<c:url value="delete?id=${team.team_id}" />'>TERMINATE THE CONTRACT</a>
             </td>
         </tr>
 </c:forEach>
 
     </table>
-    <a class="gradient-button1" href="create">Создать команду</a>
+    <a class="gradient-button1" href="create">CREATE A TEAM</a>
 
-    <a class="gradient-button1" href="index.jsp">Назад</a>
+    <a class="gradient-button1" href="index.jsp">BACK</a>
 
 </center>
 </body>

@@ -19,7 +19,6 @@ public class PlayerLineUpServlet extends HttpServlet {
         TeamService teamService = new TeamServiceImpl();
         int id = Integer.parseInt(request.getParameter("id"));
         Set<Player> players = teamService.showAllPlayerTeamInfo(id);
-        Player player;
         request.setAttribute("id", id);
         request.setAttribute("players", players);
         request.getServletContext().getRequestDispatcher("/player.jsp").forward(request, response);

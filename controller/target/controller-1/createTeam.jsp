@@ -7,16 +7,16 @@
 </head>
 <body>
 <%@include file="headerTeam.jsp" %>
-<h3>Добавить команду</h3>
+<h3>Creation of a team</h3>
 <form method="post">
     <br>
-    <input name="name" required placeholder="Введите название" style="width: 250px;"/><br><br>
-    <input name="city" placeholder="Введите город" style="width: 250px;" /><br><br>
-    <input name="сountry" placeholder="Введите страну" style="width: 250px;" /><br><br>
-    <input name="stadium" placeholder="Введите название стадиона" style="width: 250px;" /><br><br>
-    <input name="coach" placeholder="Введите имя и фамилию тренера" style="width: 250px;" /><br><br>
-    <input type="submit" value="Создать" />
+    <input name="name" required placeholder="Enter the title" style="width: 250px;"/><br><br>
+    <input name="city" placeholder="Enter city" style="width: 250px;" /><br><br>
+    <input name="сountry" placeholder="Enter country" style="width: 250px;" /><br><br>
+    <input name="stadium" placeholder="Enter stadium name" style="width: 250px;" /><br><br>
+    <input name="coach" placeholder="Enter the trainer's first and last name" style="width: 250px;" /><br><br>
+    <input type="submit" value="CREATE" />
 </form>
-<a href="TeamServlet">Вернуться назад</a>
+<a class="gradient-button1" href="TeamServlet" />BACK</a>
 </body>
 </html>

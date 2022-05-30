@@ -6,7 +6,7 @@
     <title>Title</title>
 </head>
 <body>
-<%@include file="header.jsp" %>
+<%@include file="headerTeam.jsp" %>
 <h3>Редактирование команды</h3>
 
 <form method="post">
@@ -32,6 +32,6 @@
 
     <input type="submit" value="Сохранить" />
 </form>
-<a href="TeamServlet">Вернуться назад</a>
+<a class="gradient-button" href="TeamServlet" />Вернуться назад</a>
 </body>
 </html>

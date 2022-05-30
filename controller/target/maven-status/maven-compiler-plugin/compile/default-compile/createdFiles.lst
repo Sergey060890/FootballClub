@@ -1,11 +1,13 @@
+servlet\EditPlayerServlet.class
+constans\Constans.class
+servlet\TeamServlet.class
+servlet\PlayerLineUpServlet.class
 servlet\DeletePlayerServlet.class
 servlet\DeleteTeamServlet.class
 servlet\EditTeamServlet.class
 servlet\PlayerServlet.class
-constans\Constans.class
-servlet\TeamServlet.class
 servlet\CreatePlayerServlet.class
 servlet\StartServlet.class
 servlet\CreateTeamServlet.class
-servlet\PlayerLineUpServlet.class
+servlet\PlayerInformationServlet.class
 servlet\SelectionTeamServlet.class

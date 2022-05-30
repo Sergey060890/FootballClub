@@ -31,4 +31,8 @@ public interface PlayerService {
 
     public Player findPlayerById(Integer id) throws SQLException;
 
+    public void updatePlayer(Integer id, String playerName, String playerSurname,
+                             String country, Integer age,
+                             String position) throws SQLException;
+
 }

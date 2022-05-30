@@ -61,6 +61,19 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
+    public void updatePlayer(Integer id, String playerName, String playerSurname,
+                           String country, Integer age,
+                           String position) throws SQLException {
+        Player player = enityDaoImplPlayer.findOne(id);
+        player.setPlayer_name(playerName);
+        player.setPlayer_surname(playerSurname);
+        player.setCountry(country);
+        player.setAge(age);
+        player.setPosition(position);
+        enityDaoImplPlayer.update(player);
+    }
+
+    @Override
     public Player findPlayerById(Integer id) throws SQLException  {
         return enityDaoImplPlayer.findOne(id);
     }
