@@ -25,8 +25,7 @@ public class DeletePlayerServlet extends HttpServlet {
 
             playerService.deletePlayer(id);
             response.sendRedirect(request.getContextPath() + "/playerLineUp?id=" + idTeam);
-        }
-        catch(Exception ex) {
+        } catch (Exception ex) {
             getServletContext().getRequestDispatcher("/notfound.jsp").forward(request, response);
         }
     }

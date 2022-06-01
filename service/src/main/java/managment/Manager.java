@@ -1,13 +1,15 @@
 package managment;
 
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 
 /**
  * Manager Class
  */
 public class Manager {
 
-    public static void main(String[] args) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+    public static void main(String[] args) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException, SQLException {
+
 //        /**
 //         * Player Service
 //         */

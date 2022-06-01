@@ -22,13 +22,13 @@
         <input name="surname" value="${surname}"  required/>
     </label><br><br>
 
-    <label>cтрана </label><br>
+    <label>Country </label><br>
     <input name="country" value="${country}" /><br><br>
 
-    <label>стадион </label><br>
+    <label>Age </label><br>
     <input name="age" value="${age}" /><br><br>
 
-    <label>тренер </label><br>
+    <label>Position </label><br>
     <input name="position" value="${position}" /><br><br>
 
     <input type="submit" value="SAVE" />

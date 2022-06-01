@@ -26,6 +26,7 @@
         <caption align="left">MY CLUB</caption>
         <tr>
             <th>NAME</th>
+            <th>CITY</th>
             <th>COUNTRY</th>
             <th>STADIUM</th>
             <th>COACH</th>
@@ -34,6 +35,7 @@
 
         <jsp:useBean id="id" scope="request" type="java.lang.Integer"/>
         <jsp:useBean id="name" scope="request" type="java.lang.String"/>
+        <jsp:useBean id="city" scope="request" type="java.lang.String"/>
         <jsp:useBean id="country" scope="request" type="java.lang.String"/>
         <jsp:useBean id="stadium" scope="request" type="java.lang.String"/>
         <jsp:useBean id="coach" scope="request" type="java.lang.String"/>
@@ -48,6 +50,10 @@
         <tr>
             <td>
                 ${name}
+            </td>
+
+            <td>
+                ${city}
             </td>
 
             <td>
@@ -66,9 +72,9 @@
         <%--        </c:forEach>--%>
 
     </table>
+    <a class="gradient-button1" href='<c:url value="game?id=${id}" />'>PLAY</a>
     <a class="gradient-button1" href='<c:url value="playerLineUp?id=${id}" />'>Team line-up</a>
-    <a class="gradient-button1" href="TeamServlet">Games</a>
-    <a class="gradient-button1" href="TeamServlet">Statistics</a>
+    <a class="gradient-button1" href="TeamServlet">Team statistics</a>
     <a class="gradient-button1" href="TeamServlet">Back</a>
 </center>
 </body>

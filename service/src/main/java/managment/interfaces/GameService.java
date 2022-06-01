@@ -1,6 +1,7 @@
 package managment.interfaces;
 
 
+import DTO.GameDTO;
 import footballclub.entity.Game;
 import footballclub.entity.GoalConceded;
 import footballclub.entity.GoalScore;
@@ -10,6 +11,7 @@ import footballclub.entity.Substitution;
 import footballclub.entity.Team;
 import footballclub.entity.YellowCard;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
@@ -18,8 +20,10 @@ public interface GameService {
     /**
      * Create game
      */
-    Game createGame(LocalDate date, Team team, Team opponentTeam, Set<Player> players);
+    Game createGame(LocalDate date, Team team, String opponentTeam);
 
+    Game createGameNoPlayers(LocalDate date, Team team,
+                                    String opponentTeam);
     /**
      * Create Goal
      */
@@ -55,4 +59,14 @@ public interface GameService {
                                   Set<RedCard> rc,
                                   Set<Substitution> subs);
 
+    List<GameDTO> findAll();
+
+    Set<Game> showAllGameTeamInfo(Integer id);
+
+    void deleteGame(Integer id) throws SQLException;
+
+    void updateGame(Integer id, LocalDate date,
+                           String opponentTeam) throws SQLException;
+
+    Game findGameById(Integer id) throws SQLException;
 }

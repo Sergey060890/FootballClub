@@ -51,7 +51,7 @@
             </td>
 
             <td>
-                <a class="gradient-button" href='<c:url value="delete?id=${team.team_id}" />'>TERMINATE THE CONTRACT</a>
+                <a class="gradient-button" href='<c:url value="delete?id=${team.team_id}" />'>DELETE TEAM</a>
             </td>
         </tr>
 </c:forEach>

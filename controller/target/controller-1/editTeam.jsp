@@ -6,7 +6,7 @@
     <title>Title</title>
 </head>
 <body>
-<%@include file="header.jsp" %>
+<%@include file="headerTeam.jsp" %>
 <h3>Редактирование команды</h3>
 
 <form method="post">

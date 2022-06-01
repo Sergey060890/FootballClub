@@ -1,6 +1,10 @@
 servlet\EditPlayerServlet.class
 constans\Constans.class
 servlet\TeamServlet.class
+servlet\DeleteGameServlet.class
+servlet\EditGameServlet.class
+servlet\MatchServlet.class
+servlet\GameServlet.class
 servlet\PlayerLineUpServlet.class
 servlet\DeletePlayerServlet.class
 servlet\DeleteTeamServlet.class
@@ -8,6 +12,7 @@ servlet\EditTeamServlet.class
 servlet\PlayerServlet.class
 servlet\CreatePlayerServlet.class
 servlet\StartServlet.class
+servlet\CreateGameServlet.class
 servlet\CreateTeamServlet.class
 servlet\PlayerInformationServlet.class
 servlet\SelectionTeamServlet.class

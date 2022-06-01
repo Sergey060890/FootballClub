@@ -1,5 +1,7 @@
 package managment.implementation;
 
+import DTO.GameDTO;
+import DTO.mapper.GameMapper;
 import footballclub.dao.implementations.EnityDaoImplGame;
 import footballclub.dao.implementations.EnityDaoImplGoalConceded;
 import footballclub.dao.implementations.EnityDaoImplGoalScore;
@@ -16,6 +18,7 @@ import footballclub.entity.Team;
 import footballclub.entity.YellowCard;
 import managment.interfaces.GameService;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +27,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static managment.ConstansManager.*;
 
@@ -48,19 +52,11 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public Game createGame(LocalDate date, Team team,
-                           Team opponentTeam, Set<Player> lineUpTeam) {
-        Set<Player> players1 = new HashSet<>();
-        for (Player p : lineUpTeam
-        ) {
-            if (p.getTeamPlayer() == team) {
-                players1.add(p);
-            }
-        }
+                           String opponentTeam) {
         Game game = Game.builder()
                 .teamGame(team)
                 .game_date(date)
-                .players(players1)
-                .opponent_name(opponentTeam.getTeam_name())
+                .opponent_name(opponentTeam)
                 .result(RESULT_GAME_WIN)
                 .goal_score(GOAL_SCORE)
                 .goals_conceded(GOALS_CONCEDED)
@@ -70,6 +66,38 @@ public class GameServiceImpl implements GameService {
         enityDaoImplGame.create(game);
         games.add(game);
         return game;
+    }
+
+    @Override
+    public Game createGameNoPlayers(LocalDate date, Team team,
+                           String opponentTeam) {
+        Game game = Game.builder()
+                .teamGame(team)
+                .game_date(date)
+                .opponent_name(opponentTeam)
+                .build();
+        enityDaoImplGame.create(game);
+        return game;
+    }
+
+    @Override
+    public List<GameDTO> findAll() {
+        return enityDaoImplGame.findAll()
+                .stream()
+                .map(GameMapper::mapFrom)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Set<Game> showAllGameTeamInfo(Integer id) {
+        Set<Game> players = new HashSet<>();
+        for (Game game : enityDaoImplGame.findAll()
+        ) {
+            if (game.getTeamGame().getTeam_id() == id) {
+                players.add(game);
+            }
+        }
+        return players;
     }
 
     @Override
@@ -229,5 +257,24 @@ public class GameServiceImpl implements GameService {
         list.add(str4);
         list.add(str5);
         return list;
+    }
+
+    @Override
+    public void deleteGame(Integer id) throws SQLException {
+        enityDaoImplGame.deleteById(id);
+    }
+
+    @Override
+    public void updateGame(Integer id, LocalDate date,
+                           String opponentTeam) throws SQLException {
+        Game game = enityDaoImplGame.findOne(id);
+        game.setGame_date(date);
+        game.setOpponent_name(opponentTeam);
+        enityDaoImplGame.update(game);
+    }
+
+    @Override
+    public Game findGameById(Integer id) throws SQLException  {
+        return enityDaoImplGame.findOne(id);
     }
 }
