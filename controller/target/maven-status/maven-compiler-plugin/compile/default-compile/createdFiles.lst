@@ -4,8 +4,10 @@ servlet\TeamServlet.class
 servlet\DeleteGameServlet.class
 servlet\EditGameServlet.class
 servlet\MatchServlet.class
+servlet\GoPlayersServlet.class
 servlet\GameServlet.class
 servlet\PlayerLineUpServlet.class
+servlet\StartLineUpServlet.class
 servlet\DeletePlayerServlet.class
 servlet\DeleteTeamServlet.class
 servlet\EditTeamServlet.class

@@ -68,7 +68,7 @@
     </table>
 
     <a class="gradient-button1" href='<c:url value="createGame?id=${id}" />'>NEW GAME</a>
-    <a class="gradient-button1" href="TeamServlet">BACK</a>
+    <a class="gradient-button1" href='<c:url value="player?id=${id}" />'>BACK</a>
 
 </center>
 </body>

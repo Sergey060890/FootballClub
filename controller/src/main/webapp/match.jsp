@@ -14,7 +14,6 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="css/styles.css">
     <title></title>
     <meta http-equiv="content-type" content="text/html; charset=windows-1251" />
     <link rel="stylesheet" type="text/css" href="#" media="#" />
@@ -31,8 +30,8 @@
     </script>
 
 <body style="padding:50px;">
-
 <%@include file="headerTeam.jsp" %>
+<center>
     <table border="3" width="50%">
 
         <caption><b>MATCH</b></caption>
@@ -62,7 +61,7 @@
                 </td>
 
                 <td>
-                    <a class="gradient-button" href='<c:url value="informationPlayer?id=${game.game_id}" />'>Select Line-up</a>
+                    <a class="gradient-button"  href='<c:url  value="startLineup?id=${game.game_id} " />'>Select Line-up</a>
                 </td>
 
 
@@ -70,9 +69,8 @@
 
     </table>
 
-<%--    <a class="gradient-button1" href='<c:url value="createPlayer?id=${game.game_id}" />'>START THE GAME!</a>--%>
-<%--    <a class="gradient-button1" href="TeamServlet">BACK</a>--%>
-
-</center>
+                <a class="gradient-button1" href='<c:url value="createPlayer?id=${game.game_id}" />'>START THE GAME!</a>
+                <a class="gradient-button1" href='<c:url value="game?id=${game.getTeamGame().getTeam_id()}" />'>BACK</a>
+    </center>
 </body>
 </html>
