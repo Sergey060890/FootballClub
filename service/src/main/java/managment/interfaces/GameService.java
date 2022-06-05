@@ -20,7 +20,7 @@ public interface GameService {
     /**
      * Create game
      */
-    Game createGame(LocalDate date, Team team, String opponentTeam);
+    Game createGame(LocalDate date, Team team, String opponentTeam) throws SQLException;
 
     Game createGameNoPlayers(LocalDate date, Team team,
                                     String opponentTeam);

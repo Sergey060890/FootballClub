@@ -2,6 +2,7 @@ package managment.implementation;
 
 import DTO.GameDTO;
 import DTO.mapper.GameMapper;
+import Random.RandomResult;
 import footballclub.dao.implementations.EnityDaoImplGame;
 import footballclub.dao.implementations.EnityDaoImplGoalConceded;
 import footballclub.dao.implementations.EnityDaoImplGoalScore;
@@ -29,8 +30,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static managment.ConstansManager.*;
-
 public class GameServiceImpl implements GameService {
     EnityDaoImplGame enityDaoImplGame =
             new EnityDaoImplGame();
@@ -44,6 +43,9 @@ public class GameServiceImpl implements GameService {
             new EnityDaoImplRedCard();
     EnityDaoImplSubstitution enityDaoImplSubstitution =
             new EnityDaoImplSubstitution();
+    RandomResult random = new RandomResult();
+
+
 
     public static List<Game> games = new ArrayList<>();
     public static List<GoalScore> goalScores = new ArrayList<>();
@@ -52,16 +54,18 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public Game createGame(LocalDate date, Team team,
-                           String opponentTeam) {
+                           String opponentTeam) throws SQLException {
+        int goalS = random.randomGoal();
+        int goalC = random.randomGoal();
         Game game = Game.builder()
                 .teamGame(team)
                 .game_date(date)
                 .opponent_name(opponentTeam)
-                .result(RESULT_GAME_WIN)
-                .goal_score(GOAL_SCORE)
-                .goals_conceded(GOALS_CONCEDED)
-                .yellow_card_score(YELLOW_CARD_SCORE)
-                .red_card_score(RED_CARD_SCORE)
+                .goal_score(goalS)
+                .goals_conceded(goalC)
+                .result(random.randomResult(goalS,goalC))
+                .yellow_card_score(random.randomYellowCardScore())
+                .red_card_score(random.randomRedCardScore())
                 .build();
         enityDaoImplGame.create(game);
         games.add(game);
@@ -105,7 +109,7 @@ public class GameServiceImpl implements GameService {
         GoalScore goal = GoalScore.builder()
                 .game(game)
                 .player(player)
-                .goal_time(time)
+                .goal_time(random.timeRandomGoal())
                 .build();
         enityDaoImplGoalScore.create(goal);
         return goal;
@@ -116,7 +120,7 @@ public class GameServiceImpl implements GameService {
         GoalConceded goalConc = GoalConceded.builder()
                 .game(game)
                 .player(player)
-                .conceded_time(time)
+                .conceded_time(random.timeRandomGoal())
                 .build();
         enityDaoImplGoalConceded.create(goalConc);
         return goalConc;

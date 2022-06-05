@@ -26,7 +26,7 @@ under the License.
     <copyright>&#169;2022</copyright>
     <item>
       <title>File: 20,
-             Errors: 209,
+             Errors: 206,
              Warnings: 0,
              Infos: 0
       </title>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#servlet.GameServlet.java">servlet/GameServlet.java</a>
+                  <a href="${project.url}/checkstyle.html#servlet.playerServlet.DeletePlayerServlet.java">servlet/playerServlet/DeletePlayerServlet.java</a>
                 </td>
                 <td>
                   0
@@ -55,54 +55,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  5
+                  6
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#servlet.CreateTeamServlet.java">servlet/CreateTeamServlet.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  10
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#servlet.TeamServlet.java">servlet/TeamServlet.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#servlet.CreateGameServlet.java">servlet/CreateGameServlet.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  13
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#servlet.MatchServlet.java">servlet/MatchServlet.java</a>
+                  <a href="${project.url}/checkstyle.html#servlet.gameServlet.MatchServlet.java">servlet/gameServlet/MatchServlet.java</a>
                 </td>
                 <td>
                   0
@@ -116,7 +74,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#servlet.EditGameServlet.java">servlet/EditGameServlet.java</a>
+                  <a href="${project.url}/checkstyle.html#servlet.teamServlet.CreateTeamServlet.java">servlet/teamServlet/CreateTeamServlet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#servlet.gameServlet.EditGameServlet.java">servlet/gameServlet/EditGameServlet.java</a>
                 </td>
                 <td>
                   0
@@ -130,7 +102,77 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#servlet.DeleteGameServlet.java">servlet/DeleteGameServlet.java</a>
+                  <a href="${project.url}/checkstyle.html#servlet.playerServlet.PlayerLineUpServlet.java">servlet/playerServlet/PlayerLineUpServlet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#servlet.playerServlet.EditPlayerServlet.java">servlet/playerServlet/EditPlayerServlet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  15
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#servlet.playerServlet.PlayerInformationServlet.java">servlet/playerServlet/PlayerInformationServlet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#servlet.teamServlet.TeamServlet.java">servlet/teamServlet/TeamServlet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#servlet.teamServlet.DeleteTeamServlet.java">servlet/teamServlet/DeleteTeamServlet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#servlet.gameServlet.DeleteGameServlet.java">servlet/gameServlet/DeleteGameServlet.java</a>
                 </td>
                 <td>
                   0
@@ -144,7 +186,49 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#servlet.SelectionTeamServlet.java">servlet/SelectionTeamServlet.java</a>
+                  <a href="${project.url}/checkstyle.html#servlet.playerServlet.StartLineUpServlet.java">servlet/playerServlet/StartLineUpServlet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  21
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#servlet.teamServlet.EditTeamServlet.java">servlet/teamServlet/EditTeamServlet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  20
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#servlet.playerServlet.PlayerServlet.java">servlet/playerServlet/PlayerServlet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#servlet.teamServlet.SelectionTeamServlet.java">servlet/teamServlet/SelectionTeamServlet.java</a>
                 </td>
                 <td>
                   0
@@ -158,7 +242,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#servlet.PlayerInformationServlet.java">servlet/PlayerInformationServlet.java</a>
+                  <a href="${project.url}/checkstyle.html#servlet.gameServlet.CreateGameServlet.java">servlet/gameServlet/CreateGameServlet.java</a>
                 </td>
                 <td>
                   0
@@ -167,77 +251,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  5
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#servlet.StartServlet.java">servlet/StartServlet.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#servlet.DeletePlayerServlet.java">servlet/DeletePlayerServlet.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  6
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#servlet.GoPlayersServlet.java">servlet/GoPlayersServlet.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#servlet.PlayerServlet.java">servlet/PlayerServlet.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  6
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#servlet.StartLineUpServlet.java">servlet/StartLineUpServlet.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  20
+                  14
                 </td>
               </tr>
                           <tr>
@@ -256,7 +270,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#servlet.CreatePlayerServlet.java">servlet/CreatePlayerServlet.java</a>
+                  <a href="${project.url}/checkstyle.html#servlet.playerServlet.CreatePlayerServlet.java">servlet/playerServlet/CreatePlayerServlet.java</a>
                 </td>
                 <td>
                   0
@@ -265,40 +279,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  11
+                  12
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#servlet.DeleteTeamServlet.java">servlet/DeleteTeamServlet.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  7
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#servlet.EditPlayerServlet.java">servlet/EditPlayerServlet.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  15
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#servlet.PlayerLineUpServlet.java">servlet/PlayerLineUpServlet.java</a>
+                  <a href="${project.url}/checkstyle.html#servlet.playerServlet.GoPlayersServlet.java">servlet/playerServlet/GoPlayersServlet.java</a>
                 </td>
                 <td>
                   0
@@ -312,7 +298,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#servlet.EditTeamServlet.java">servlet/EditTeamServlet.java</a>
+                  <a href="${project.url}/checkstyle.html#servlet.gameServlet.GameServlet.java">servlet/gameServlet/GameServlet.java</a>
                 </td>
                 <td>
                   0
@@ -321,7 +307,21 @@ under the License.
                   0
                 </td>
                 <td>
-                  26
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#servlet.otherServlet.StartServlet.java">servlet/otherServlet/StartServlet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
                 </td>
               </tr>
                       </tbody>

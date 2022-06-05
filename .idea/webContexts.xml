@@ -5,7 +5,10 @@
       <map>
         <entry key="file://$PROJECT_DIR$/controller/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/controller/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/controller/src/main/webapp/match.jsp" value="file://$PROJECT_DIR$/controller/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/controller/src/main/webapp/other-jsp/index.jsp" value="file://$PROJECT_DIR$/controller/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/controller/src/main/webapp/team-jsp/team.jsp" value="file://$PROJECT_DIR$/controller/src/main/webapp/team-jsp" />
         <entry key="file://$PROJECT_DIR$/controller/src/main/webapp/team.jsp" value="file://$PROJECT_DIR$/controller/src/main/webapp" />
+        <entry key="mock:///match.jsp" value="file://$PROJECT_DIR$/controller/src/main/webapp" />
       </map>
     </option>
   </component>

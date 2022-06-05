@@ -7,6 +7,7 @@ import footballclub.dao.interfaces.PlayerDao;
 import footballclub.entity.Player;
 import footballclub.entity.Team;
 import managment.interfaces.PlayerService;
+import managment.interfaces.TeamService;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
 public class PlayerServiceImpl implements PlayerService {
     PlayerDao enityDaoImplPlayer =
             new EnityDaoImplPlayer();
-
+    TeamService teamService = new TeamServiceImpl();
     public static List<Player> players = new ArrayList<>();
 
     @Override
@@ -88,4 +89,5 @@ public class PlayerServiceImpl implements PlayerService {
     public void deletePlayer(Integer id) throws SQLException {
         enityDaoImplPlayer.deleteById(id);
     }
+
 }

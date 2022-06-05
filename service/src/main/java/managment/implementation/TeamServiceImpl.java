@@ -6,8 +6,11 @@ import footballclub.dao.implementations.EnityDaoImplPlayer;
 import footballclub.dao.implementations.EnityDaoImplTeam;
 import footballclub.dao.interfaces.PlayerDao;
 import footballclub.dao.interfaces.TeamDao;
+import footballclub.entity.Game;
 import footballclub.entity.Player;
 import footballclub.entity.Team;
+import managment.interfaces.GameService;
+import managment.interfaces.PlayerService;
 import managment.interfaces.TeamService;
 
 import java.sql.SQLException;
@@ -22,7 +25,6 @@ public class TeamServiceImpl implements TeamService {
             new EnityDaoImplPlayer();
 
     TeamDao enityDaoImplTeam = new EnityDaoImplTeam();
-
     @Override
     public Team createTeam(String teamName, String teamCity,
                            String teamCountry, String teamStadium,
@@ -112,5 +114,21 @@ public class TeamServiceImpl implements TeamService {
             }
         }
         return players;
+    }
+
+    @Override
+    public void deleteAllPlayerTeam(TeamService teamService, PlayerService playerService,Integer id) throws SQLException {
+        for (Player p : teamService.showAllPlayerTeamInfo(id)
+        ) {
+                playerService.deletePlayer(p.getPlayer_id());
+        }
+    }
+
+    @Override
+    public void deleteAllGameTeam(GameService gameService, Integer id) throws SQLException {
+        for (Game game : gameService.showAllGameTeamInfo(id)
+        ) {
+                gameService.deleteGame(game.getGame_id());
+        }
     }
 }
