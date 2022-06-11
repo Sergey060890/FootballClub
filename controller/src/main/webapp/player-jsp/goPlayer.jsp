@@ -25,11 +25,10 @@
 
         <caption><b>My lineup</b></caption>
         <tr>
-            <th>Name</th>
             <th>Surname</th>
         </tr>
 
-<%--        <jsp:useBean id="id" scope="request" type="java.lang.Integer"/>--%>
+        <jsp:useBean id="id" scope="request" type="java.lang.Integer"/>
         <jsp:useBean id="players" scope="request" type="java.util.Set"/>
         <c:forEach var="player" items="${players}">
 
@@ -41,10 +40,6 @@
 
             <tr>
                 <td>
-                        ${player.player_name}
-                </td>
-
-                <td>
                         ${player.player_surname}
                 </td>
 
@@ -52,7 +47,6 @@
         </c:forEach>
 
     </table>
-
 
 
 </center>

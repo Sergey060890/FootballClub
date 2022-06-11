@@ -29,15 +29,13 @@
         window.onload = randomImg;
     </script>
 
-<body style="padding:50px;">
+<body >
 <%@include file="/other-jsp/headerTeam.jsp" %>
 <center>
     <table border="3" width="50%">
 
         <caption><b>MATCH</b></caption>
         <tr>
-            <th>Date</th>
-
             <th><center>Teams</center></th>
             <th><center>Weather</center></th>
             <th><center>Line-up</center></th>
@@ -47,11 +45,6 @@
         <jsp:useBean id="game" scope="request" type="footballclub.entity.Game"/>
 
             <tr>
-
-                <td>
-                        ${game.game_date}
-                </td>
-
                 <td>
                     <center>${game.teamGame.team_name} VS ${game.opponent_name}</center>
                 </td>
@@ -61,7 +54,7 @@
                 </td>
 
                 <td>
-                    <a class="gradient-button"  href='<c:url  value="startLineup?id=${game.game_id} " />'>Select Line-up</a>
+                    <center><a class="gradient-button"  href='<c:url  value="startLineup?id=${game.game_id} " />'>Select Line-up</a></center>
                 </td>
 
 

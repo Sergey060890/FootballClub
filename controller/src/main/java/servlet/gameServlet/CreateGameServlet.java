@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDate;
 
 @WebServlet("/createGame")
 public class CreateGameServlet extends HttpServlet {
@@ -33,9 +32,8 @@ public class CreateGameServlet extends HttpServlet {
             GameService gameService = new GameServiceImpl();
             int id = Integer.parseInt(request.getParameter("id"));
             Team team =   teamService.findTeamId(id);
-            LocalDate date = LocalDate.parse(request.getParameter("date"));
             String opponent = request.getParameter("opponent");
-            gameService.createGame(date,team,opponent);
+            gameService.createGame(team,opponent);
             response.sendRedirect(request.getContextPath() + "/game?id=" + id);
         } catch (Exception ex) {
             request.getServletContext().getRequestDispatcher("/other-jsp/notfound.jsp").forward(request, response);

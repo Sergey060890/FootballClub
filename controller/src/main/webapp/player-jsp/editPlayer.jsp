@@ -32,7 +32,19 @@
     <input name="age" value="${age}" /><br><br>
 
     <label>Position </label><br>
-    <input name="position" value="${position}" /><br><br>
+        <select name="position" id="pos" style="width: 172px;"/>
+        <option>${position}</option>
+        <option>GK</option>
+        <option>FRW</option>
+        <option>RW</option>
+        <option>LW</option>
+        <option>CM</option>
+        <option>RM</option>
+        <option>LM</option>
+        <option>CB</option>
+        <option>LB</option>
+        <option>RB</option>
+        </select> <br><br>
 
     <input type="submit" class="gradient-button1" value="SAVE" />
         <a class="gradient-button1" href="playerLineUp?id=${player.teamPlayer.team_id}" />BACK</a>

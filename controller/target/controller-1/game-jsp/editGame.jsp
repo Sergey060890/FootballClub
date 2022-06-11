@@ -15,11 +15,6 @@
     <center>
     <input type="hidden" value="${id}" name="id" />
 
-    <label>Date</label><br>
-    <label>
-        <input name="date" value="${date}"  required/>
-    </label><br><br>
-
     <label>Opponent</label><br>
     <label>
         <input name="opponent" value="${opponent}"  required/>

@@ -44,7 +44,6 @@
             (
                 game_id           int auto_increment primary key,
                 team_id           int(11),
-                game_date         date      not null,
                 opponent_name     char(200),
                 result            char(200) not null,
                 goal_score        int(11),
@@ -192,4 +191,3 @@
         </sql>
     </changeSet>
 </databaseChangeLog>
-

@@ -26,13 +26,12 @@
 
         <caption><b>My upcoming games</b></caption>
         <tr>
-            <th>Date</th>
             <th>Opponent</th>
             <th colspan="3"><center>Actions</center></th>
         </tr>
 <%--        <jsp:useBean id="gameplay" scope="request" type="footballclub.entity.Game"/>--%>
         <jsp:useBean id="id" scope="request" type="java.lang.Integer"/>
-        <jsp:useBean id="games" scope="request" type="java.util.Set"/>
+        <jsp:useBean id="games" scope="request" type="java.util.Map"/>
         <c:forEach var="game" items="${games}">
 
             <%--        <jsp:useBean id="teams" scope="request" type="java.util.Set"/>--%>
@@ -42,24 +41,21 @@
             <%--        <c:forEach var="game" items="${games}">--%>
 
             <tr>
+
                 <td>
-                        ${game.game_date}
+                        ${game.getValue()}
                 </td>
 
                 <td>
-                        ${game.opponent_name}
+                    <a class="gradient-button" href='<c:url value="match?id=${game.getKey()}" />'>Play a match</a>
                 </td>
 
                 <td>
-                    <a class="gradient-button" href='<c:url value="match?id=${game.game_id}" />'>Play a match</a>
+                    <a class="gradient-button" href='<c:url value="editGame?id=${game.getKey()}" />'>Edit game</a>
                 </td>
 
                 <td>
-                    <a class="gradient-button" href='<c:url value="editGame?id=${game.game_id}" />'>Edit game</a>
-                </td>
-
-                <td>
-                    <a class="gradient-button" href='<c:url value="deleteGame?id=${game.game_id}" />'>Refuse to play</a>
+                    <a class="gradient-button" href='<c:url value="deleteGame?id=${game.getKey()}" />'>Refuse to play</a>
                 </td>
 
             </tr>

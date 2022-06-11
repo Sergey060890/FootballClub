@@ -20,7 +20,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -43,9 +42,6 @@ public class Game implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "game_id")
     private Integer game_id;
-
-    @Column(name = "game_date")
-    private LocalDate game_date;
 
     @Column(name = "opponent_name")
     private String opponent_name;

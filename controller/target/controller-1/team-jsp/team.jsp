@@ -28,7 +28,7 @@
 <%@include file="/other-jsp/headerTeam.jsp" %>
 <center>
     <h2>Team management</h2>
-    <table border="3" width="50%">
+    <table>
         <tr>
             <th>Team name</th>
             <th>City</th>
@@ -41,9 +41,11 @@
             <tr>
                 <td>${team.team_name}</td>
                 <td>${team.city}</td>
+                <center>
                 <td>
                     <a class="gradient-button" href='<c:url value="player?id=${team.team_id}" />'>SELECT</a>
                 </td>
+                </center>
             </tr>
         </c:forEach>
 

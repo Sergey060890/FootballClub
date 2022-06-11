@@ -51,7 +51,6 @@ public class Utils {
     public static Game createGame(Team team, Set<Player> players) {
         return Game.builder()
                 .teamGame(team)
-                .game_date(GAME_DATE_1)
                 .players(players)
                 .opponent_name(OPPONENT_NAME)
                 .result(RESULT_GAME)

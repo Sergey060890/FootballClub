@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 
 @WebServlet("/startLineup")
@@ -29,10 +27,10 @@ public class StartLineUpServlet extends HttpServlet {
 
         try {
             Game game = gameService.findGameById(id);
-            Set<Player> players = teamService.showAllPlayerTeamInfo(game.getTeamGame().getTeam_id());
+            Set<Player> players1 = teamService.showAllPlayerTeamInfo(game.getTeamGame().getTeam_id());
             if (game != null) {
                 request.setAttribute("game", game);
-                request.setAttribute("players", players);
+                request.setAttribute("players", players1);
                 request.getServletContext().getRequestDispatcher("/player-jsp/startLineup.jsp").forward(request, response);
             } else {
                 request.getServletContext().getRequestDispatcher("/other-jsp/notfound.jsp").forward(request, response);
@@ -47,29 +45,17 @@ public class StartLineUpServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             GameService gameService = new GameServiceImpl();
-            TeamService teamService = new TeamServiceImpl();
             int id = Integer.parseInt(request.getParameter("id"));
-            Game game = gameService.findGameById(id);
+            request.setAttribute("id", id);
             String[] players = request.getParameterValues("player");
-            Set<String> mySet = new HashSet<>(Arrays.asList(players));
-            request.setAttribute("id", id);//id игры
-            Set<Player> playerSet = teamService.showAllPlayerTeamInfo(game.getTeamGame().getTeam_id());
-
-            Set<Player> playersGo = new HashSet<>();//вынести всё в метод
-            for (Player player: playerSet
-                 ) {
-                for (String str:mySet
-                     ) {
-                    if (player.getPlayer_surname()==str){
-                        playersGo.add(player);
-                    }
-                }
-            }
-            game.setPlayers(playersGo);
-            response.sendRedirect(request.getContextPath() + "/goPlayers");
+            Set<Player> playersGo = gameService.startGamePlayer(id,players);
+            Game game = gameService.addPlayersInGame(id,playersGo);
+            request.setAttribute("game", game);
+            request.setAttribute("players", playersGo);
+            request.getServletContext().getRequestDispatcher("/player-jsp/goPlayer.jsp").forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
+
 }

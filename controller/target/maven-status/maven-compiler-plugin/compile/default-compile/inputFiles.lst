@@ -9,7 +9,6 @@ D:\FootballClub\controller\src\main\java\servlet\playerServlet\PlayerServlet.jav
 D:\FootballClub\controller\src\main\java\servlet\playerServlet\CreatePlayerServlet.java
 D:\FootballClub\controller\src\main\java\servlet\playerServlet\PlayerLineUpServlet.java
 D:\FootballClub\controller\src\main\java\servlet\playerServlet\PlayerInformationServlet.java
-D:\FootballClub\controller\src\main\java\servlet\playerServlet\GoPlayersServlet.java
 D:\FootballClub\controller\src\main\java\servlet\teamServlet\TeamServlet.java
 D:\FootballClub\controller\src\main\java\servlet\gameServlet\EditGameServlet.java
 D:\FootballClub\controller\src\main\java\servlet\gameServlet\CreateGameServlet.java

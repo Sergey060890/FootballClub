@@ -18,13 +18,13 @@ import footballclub.entity.Substitution;
 import footballclub.entity.Team;
 import footballclub.entity.YellowCard;
 import managment.interfaces.GameService;
+import managment.interfaces.TeamService;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -44,6 +44,7 @@ public class GameServiceImpl implements GameService {
     EnityDaoImplSubstitution enityDaoImplSubstitution =
             new EnityDaoImplSubstitution();
     RandomResult random = new RandomResult();
+    TeamService teamService = new TeamServiceImpl();
 
 
 
@@ -53,13 +54,12 @@ public class GameServiceImpl implements GameService {
     public static List<RedCard> redCards = new ArrayList<>();
 
     @Override
-    public Game createGame(LocalDate date, Team team,
+    public Game createGame(Team team,
                            String opponentTeam) throws SQLException {
         int goalS = random.randomGoal();
         int goalC = random.randomGoal();
         Game game = Game.builder()
                 .teamGame(team)
-                .game_date(date)
                 .opponent_name(opponentTeam)
                 .goal_score(goalS)
                 .goals_conceded(goalC)
@@ -73,14 +73,21 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Game createGameNoPlayers(LocalDate date, Team team,
+    public Game createGameNoPlayers(Team team,
                            String opponentTeam) {
         Game game = Game.builder()
                 .teamGame(team)
-                .game_date(date)
                 .opponent_name(opponentTeam)
                 .build();
         enityDaoImplGame.create(game);
+        return game;
+    }
+
+    @Override
+    public Game addPlayersInGame(Integer idGame, Set<Player> players) throws SQLException {
+        Game game = enityDaoImplGame.findOne(idGame);
+        game.setPlayers(players);
+        enityDaoImplGame.update(game);
         return game;
     }
 
@@ -93,6 +100,16 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    public Map<Integer, String> showAllOpponentTeamInfo(Set<Game> gameSet) {
+        Map<Integer, String> map = new HashMap<>();
+        for (Game g : gameSet
+        ) {
+            map.put(g.getGame_id(), g.getOpponent_name());
+        }
+        return map;
+    }
+
+    @Override
     public Set<Game> showAllGameTeamInfo(Integer id) {
         Set<Game> players = new HashSet<>();
         for (Game game : enityDaoImplGame.findAll()
@@ -102,6 +119,30 @@ public class GameServiceImpl implements GameService {
             }
         }
         return players;
+    }
+
+    @Override
+    public Set<Player> showAllGamePlayerInfo(Integer id) throws SQLException {
+        Game game = enityDaoImplGame.findOne(id);
+        Set<Player> players = game.getPlayers();
+        return players;
+    }
+
+    @Override
+    public Set<Player> startGamePlayer(Integer id, String[] players) throws SQLException {
+        Set<Player> playerSet = teamService.showAllPlayerTeamInfo(id);
+        Set<String> mySet = new HashSet<>(Arrays.asList(players));
+        Set<Player> playersGo = new HashSet<>();
+        for (Player player : playerSet
+        ) {
+            for (String str : mySet
+            ) {
+                if (player.getPlayer_surname().equals(str)) {
+                    playersGo.add(player);
+                }
+            }
+        }
+        return playersGo;
     }
 
     @Override
@@ -171,97 +212,102 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public List<String> showGameAndStats(Game game, Set<GoalScore> goal,
-                                         Set<GoalConceded> goalConc,
-                                         Set<YellowCard> yc,
-                                         Set<RedCard> rc,
-                                         Set<Substitution> subs) {
-        System.out.println("Data game: " + game.getGame_date());
-        System.out.println("----------------------------");
-        System.out.println(game.getTeamGame().getTeam_name() +
-                " VS " + game.getOpponent_name());
-        System.out.println("----------------------------");
-        System.out.println("GAME PROGRESS:");
-        System.out.println("----------------------------");
-
-        int countGoal = 0;
-        int countConc = 0;
-
-        Map<Integer, String> strGoal = new HashMap<>();
-        for (GoalScore g : goal
-        ) {
-            System.out.println("GOOOOOOOOOOOOL!!! :-)");
-            System.out.println(g.getPlayer().getPlayer_surname()
-                    + " " + g.getGoal_time() + "'");
-            strGoal.put(g.getGoal_time(), g.getPlayer().getPlayer_surname());
-            countGoal++;
-            System.out.println(countGoal + ":" + countConc);
-            System.out.println("----------------------------");
-            goalScores.add(g);
-        }
-
-        for (GoalConceded gc : goalConc
-        ) {
-            System.out.println(gc.getConceded_time() + "'" + " Goal missed!!! :-(");
-            countConc++;
-            System.out.println(countGoal + ":" + countConc);
-            System.out.println("----------------------------");
-        }
-
-        for (YellowCard ycrd : yc
-        ) {
-            System.out.println("Yellow card!");
-            System.out.println(ycrd.getPlayer().getPlayer_surname()
-                    + " " + ycrd.getCard_time() + "'");
-            System.out.println("----------------------------");
-            yellowCards.add(ycrd);
-        }
-
-        for (RedCard rcrd : rc
-        ) {
-            System.out.println("Red card!");
-            System.out.println(rcrd.getPlayer().getPlayer_surname()
-                    + " " + rcrd.getCard_time() + "'");
-            System.out.println("----------------------------");
-            redCards.add(rcrd);
-        }
-
-        for (Substitution subst : subs
-        ) {
-            System.out.println("SUBSTITUTION:");
-            System.out.println(subst.getSubs_time() + "'");
-            System.out.println("Entered the game: " + subst.getPlayerIn().getPlayer_surname());
-            System.out.println("Left the game: " + subst.getPlayerOut().getPlayer_surname());
-            System.out.println("----------------------------");
-        }
-        System.out.println("End of the game");
-        System.out.println("----------------------------");
-        System.out.println("RESULT: " + game.getGoal_score() + ":" + game.getGoals_conceded());
-
-        Iterator<Map.Entry<Integer, String>> entries = strGoal.entrySet().iterator();
-        while (entries.hasNext()) {
-            Map.Entry<Integer, String> entry = entries.next();
-            System.out.println(entry.getKey() + "' " + entry.getValue());
-        }
-        System.out.println("Yellow card:" + game.getYellow_card_score());
-        System.out.println("Red card:" + game.getRed_card_score());
-        System.out.println("-----------------------");
-        String str = game.toString();
-        String str1 = goal.toString();
-        String str2 = goalConc.toString();
-        String str3 = yc.toString();
-        String str4 = rc.toString();
-        String str5 = subs.toString();
-        List<String> list = new ArrayList<>();
-        list.add(str);
-        list.add(str1);
-        list.add(str2);
-        list.add(str3);
-        list.add(str4);
-        list.add(str4);
-        list.add(str5);
-        return list;
+    public List<String> showGameAndStats(Game game, Set<GoalScore> goal, Set<GoalConceded> goalConc, Set<YellowCard> yc, Set<RedCard> rc, Set<Substitution> subs) {
+        return null;
     }
+
+//    @Override
+//    public List<String> showGameAndStats(Game game, Set<GoalScore> goal,
+//                                         Set<GoalConceded> goalConc,
+//                                         Set<YellowCard> yc,
+//                                         Set<RedCard> rc,
+//                                         Set<Substitution> subs) {
+//        System.out.println("Data game: " + game.getGame_date());
+//        System.out.println("----------------------------");
+//        System.out.println(game.getTeamGame().getTeam_name() +
+//                " VS " + game.getOpponent_name());
+//        System.out.println("----------------------------");
+//        System.out.println("GAME PROGRESS:");
+//        System.out.println("----------------------------");
+//
+//        int countGoal = 0;
+//        int countConc = 0;
+//
+//        Map<Integer, String> strGoal = new HashMap<>();
+//        for (GoalScore g : goal
+//        ) {
+//            System.out.println("GOOOOOOOOOOOOL!!! :-)");
+//            System.out.println(g.getPlayer().getPlayer_surname()
+//                    + " " + g.getGoal_time() + "'");
+//            strGoal.put(g.getGoal_time(), g.getPlayer().getPlayer_surname());
+//            countGoal++;
+//            System.out.println(countGoal + ":" + countConc);
+//            System.out.println("----------------------------");
+//            goalScores.add(g);
+//        }
+//
+//        for (GoalConceded gc : goalConc
+//        ) {
+//            System.out.println(gc.getConceded_time() + "'" + " Goal missed!!! :-(");
+//            countConc++;
+//            System.out.println(countGoal + ":" + countConc);
+//            System.out.println("----------------------------");
+//        }
+//
+//        for (YellowCard ycrd : yc
+//        ) {
+//            System.out.println("Yellow card!");
+//            System.out.println(ycrd.getPlayer().getPlayer_surname()
+//                    + " " + ycrd.getCard_time() + "'");
+//            System.out.println("----------------------------");
+//            yellowCards.add(ycrd);
+//        }
+//
+//        for (RedCard rcrd : rc
+//        ) {
+//            System.out.println("Red card!");
+//            System.out.println(rcrd.getPlayer().getPlayer_surname()
+//                    + " " + rcrd.getCard_time() + "'");
+//            System.out.println("----------------------------");
+//            redCards.add(rcrd);
+//        }
+//
+//        for (Substitution subst : subs
+//        ) {
+//            System.out.println("SUBSTITUTION:");
+//            System.out.println(subst.getSubs_time() + "'");
+//            System.out.println("Entered the game: " + subst.getPlayerIn().getPlayer_surname());
+//            System.out.println("Left the game: " + subst.getPlayerOut().getPlayer_surname());
+//            System.out.println("----------------------------");
+//        }
+//        System.out.println("End of the game");
+//        System.out.println("----------------------------");
+//        System.out.println("RESULT: " + game.getGoal_score() + ":" + game.getGoals_conceded());
+//
+//        Iterator<Map.Entry<Integer, String>> entries = strGoal.entrySet().iterator();
+//        while (entries.hasNext()) {
+//            Map.Entry<Integer, String> entry = entries.next();
+//            System.out.println(entry.getKey() + "' " + entry.getValue());
+//        }
+//        System.out.println("Yellow card:" + game.getYellow_card_score());
+//        System.out.println("Red card:" + game.getRed_card_score());
+//        System.out.println("-----------------------");
+//        String str = game.toString();
+//        String str1 = goal.toString();
+//        String str2 = goalConc.toString();
+//        String str3 = yc.toString();
+//        String str4 = rc.toString();
+//        String str5 = subs.toString();
+//        List<String> list = new ArrayList<>();
+//        list.add(str);
+//        list.add(str1);
+//        list.add(str2);
+//        list.add(str3);
+//        list.add(str4);
+//        list.add(str4);
+//        list.add(str5);
+//        return list;
+//    }
 
     @Override
     public void deleteGame(Integer id) throws SQLException {
@@ -269,10 +315,9 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void updateGame(Integer id, LocalDate date,
+    public void updateGame(Integer id,
                            String opponentTeam) throws SQLException {
         Game game = enityDaoImplGame.findOne(id);
-        game.setGame_date(date);
         game.setOpponent_name(opponentTeam);
         enityDaoImplGame.update(game);
     }

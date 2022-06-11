@@ -25,8 +25,8 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2022</copyright>
     <item>
-      <title>File: 20,
-             Errors: 206,
+      <title>File: 19,
+             Errors: 197,
              Warnings: 0,
              Infos: 0
       </title>
@@ -97,7 +97,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  17
+                  16
                 </td>
               </tr>
                           <tr>
@@ -195,7 +195,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  21
+                  18
                 </td>
               </tr>
                           <tr>
@@ -251,7 +251,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  14
+                  13
                 </td>
               </tr>
                           <tr>
@@ -284,20 +284,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#servlet.playerServlet.GoPlayersServlet.java">servlet/playerServlet/GoPlayersServlet.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#servlet.gameServlet.GameServlet.java">servlet/gameServlet/GameServlet.java</a>
                 </td>
                 <td>
@@ -307,7 +293,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  5
+                  6
                 </td>
               </tr>
                           <tr>

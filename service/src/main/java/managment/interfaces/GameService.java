@@ -12,20 +12,24 @@ import footballclub.entity.Team;
 import footballclub.entity.YellowCard;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public interface GameService {
     /**
      * Create game
      */
-    Game createGame(LocalDate date, Team team, String opponentTeam) throws SQLException;
+    Game createGame(Team team, String opponentTeam) throws SQLException;
 
-    Game createGameNoPlayers(LocalDate date, Team team,
+    Game createGameNoPlayers(Team team,
                                     String opponentTeam);
+
+
+    Game addPlayersInGame(Integer idGame, Set<Player> players) throws SQLException;
+
     /**
-     * Create Goal
+     * Create Goal score
      */
     GoalScore createGoalScore(Game game, Player player, Integer time);
     /**
@@ -61,12 +65,18 @@ public interface GameService {
 
     List<GameDTO> findAll();
 
+    Map<Integer,String> showAllOpponentTeamInfo(Set<Game> gameSet);
+
     Set<Game> showAllGameTeamInfo(Integer id);
 
     void deleteGame(Integer id) throws SQLException;
 
-    void updateGame(Integer id, LocalDate date,
+    void updateGame(Integer id,
                            String opponentTeam) throws SQLException;
 
     Game findGameById(Integer id) throws SQLException;
+
+    Set<Player> showAllGamePlayerInfo(Integer id) throws SQLException;
+
+    Set<Player> startGamePlayer(Integer id , String[] players) throws SQLException;
 }
