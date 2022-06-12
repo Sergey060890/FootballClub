@@ -22,33 +22,38 @@
 <%@include file="/other-jsp/headerTeam.jsp" %>
 <center>
     <table border="3" width="50%">
+        <jsp:useBean id="id" scope="request" type="java.lang.Integer"/>
+        <jsp:useBean id="info" scope="request" type="java.util.List"/>
+        <jsp:useBean id="game" scope="request" type="footballclub.entity.Game"/>
 
-        <caption><b>My lineup</b></caption>
+
+        <caption><b>${game.teamGame.team_name} VS ${game.opponent_name}</b></caption>
         <tr>
-            <th>Surname</th>
+            <th><center>GAME PROGRESS:</center></th>
         </tr>
 
-        <jsp:useBean id="id" scope="request" type="java.lang.Integer"/>
-        <jsp:useBean id="players" scope="request" type="java.util.Set"/>
-        <c:forEach var="player" items="${players}">
-
-            <%--        <jsp:useBean id="teams" scope="request" type="java.util.Set"/>--%>
-            <%--        <c:forEach var="team" items="${teams}">--%>
-
-            <%--        <jsp:useBean id="games" scope="request" type="java.util.Set"/>--%>
-            <%--        <c:forEach var="game" items="${games}">--%>
+                <c:forEach var="info" items="${info}">
 
             <tr>
                 <td>
-                        ${player.player_surname}
+                    <center>${info}</center>
                 </td>
 
             </tr>
         </c:forEach>
+        <tr>
+            <th><center>RESULT:</center></th>
+        </tr>
+        <tr>
+            <td>
+                <center>${game.result} ${game.goal_score}:${game.goals_conceded}</center>
+            </td>
+
+        </tr>
 
     </table>
 
-
+    <a class="gradient-button1" href='<c:url value="game?id=${game.getTeamGame().getTeam_id()}" />'>EXIT</a>
 </center>
 </body>
 </html>

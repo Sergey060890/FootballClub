@@ -1,7 +1,10 @@
 package Random;
 
+import footballclub.entity.Player;
+
 import java.sql.SQLException;
 import java.util.Random;
+import java.util.Set;
 
 public class RandomResult {
 
@@ -14,7 +17,7 @@ public class RandomResult {
     public static final int INT_1 = 1;
     public static final int INT_2 = 2;
     public static final int INT_3 = 3;
-    public static final int MIN_TIME = 0;
+    public static final int MIN_TIME = 1;
     public static final int MAX_TIME= 94;
 
 
@@ -75,6 +78,24 @@ public class RandomResult {
     public int timeRandomSubs(){
         int i = MIN_TIME + (int) (Math.random() * MAX_TIME);
         return i;
+    }
+
+    public int countSubs() {
+        int[] myIntRC = new int[]{INT_1, INT_1, INT_2, INT_2, INT_2, INT_2, INT_3, INT_3,
+                INT_3, INT_3, INT_3, INT_3, INT_3};
+        Random random = new Random();
+        int n = myIntRC[random.nextInt(myIntRC.length)];
+        System.out.println(n);
+        return n;
+    }
+
+
+    public Player create(Set<Player> players) {
+        Player player;
+        Random rnd = new Random();
+        int i = rnd.nextInt(players.size());
+        player = (Player) players.toArray()[i];
+        return player;
     }
 
     public static void main(String[] args) {

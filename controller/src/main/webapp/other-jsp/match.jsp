@@ -37,8 +37,8 @@
         <caption><b>MATCH</b></caption>
         <tr>
             <th><center>Teams</center></th>
+            <th><center>Stadium</center></th>
             <th><center>Weather</center></th>
-            <th><center>Line-up</center></th>
         </tr>
 
         <jsp:useBean id="id" scope="request" type="java.lang.Integer"/>
@@ -50,19 +50,18 @@
                 </td>
 
                 <td>
-                <center><div id="img"></div></center>
+                    <center>${game.teamGame.stadium}</center>
                 </td>
 
                 <td>
-                    <center><a class="gradient-button"  href='<c:url  value="startLineup?id=${game.game_id} " />'>Select Line-up</a></center>
+                    <center><div id="img"></div></center>
                 </td>
 
 
             </tr>
 
     </table>
-
-                <a class="gradient-button1" href='<c:url value="createPlayer?id=${game.game_id}" />'>START THE GAME!</a>
+                <a class="gradient-button1"  href='<c:url  value="startLineup?id=${game.game_id} " />'>START THE GAME!</a>
                 <a class="gradient-button1" href='<c:url value="game?id=${game.getTeamGame().getTeam_id()}" />'>BACK</a>
     </center>
 </body>

@@ -2,6 +2,7 @@ servlet\teamServlet\CreateTeamServlet.class
 constans\Constans.class
 servlet\gameServlet\DeleteGameServlet.class
 servlet\playerServlet\EditPlayerServlet.class
+servlet\gameServlet\GoGameServlet.class
 servlet\playerServlet\StartLineUpServlet.class
 servlet\teamServlet\TeamServlet.class
 servlet\gameServlet\MatchServlet.class

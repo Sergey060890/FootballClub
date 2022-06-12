@@ -23,6 +23,7 @@ import managment.interfaces.TeamService;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -47,12 +48,6 @@ public class GameServiceImpl implements GameService {
     TeamService teamService = new TeamServiceImpl();
 
 
-
-    public static List<Game> games = new ArrayList<>();
-    public static List<GoalScore> goalScores = new ArrayList<>();
-    public static List<YellowCard> yellowCards = new ArrayList<>();
-    public static List<RedCard> redCards = new ArrayList<>();
-
     @Override
     public Game createGame(Team team,
                            String opponentTeam) throws SQLException {
@@ -63,18 +58,17 @@ public class GameServiceImpl implements GameService {
                 .opponent_name(opponentTeam)
                 .goal_score(goalS)
                 .goals_conceded(goalC)
-                .result(random.randomResult(goalS,goalC))
+                .result(random.randomResult(goalS, goalC))
                 .yellow_card_score(random.randomYellowCardScore())
                 .red_card_score(random.randomRedCardScore())
                 .build();
         enityDaoImplGame.create(game);
-        games.add(game);
         return game;
     }
 
     @Override
     public Game createGameNoPlayers(Team team,
-                           String opponentTeam) {
+                                    String opponentTeam) {
         Game game = Game.builder()
                 .teamGame(team)
                 .opponent_name(opponentTeam)
@@ -107,6 +101,20 @@ public class GameServiceImpl implements GameService {
             map.put(g.getGame_id(), g.getOpponent_name());
         }
         return map;
+    }
+
+
+    @Override
+    public Map<Integer, String> opponentRemoveTeam(GameService service, Game game, Set<Game> gameSet) {
+        Map<Integer,String> games =
+                service.showAllOpponentTeamInfo(gameSet);
+        for (Game g : gameSet
+        ) {
+            if (g.getOpponent_name() == game.getOpponent_name()) {
+                games.remove(g.getGame_id());
+            }
+        }
+        return games;
     }
 
     @Override
@@ -146,10 +154,29 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public GoalScore createGoalScore(Game game, Player player, Integer time) {
+    public Set<Player> noStartGamePlayer(Integer id, String[] players) throws SQLException {
+        Set<Player> playerSet = teamService.showAllPlayerTeamInfo(id);
+        Set<String> mySet = new HashSet<>(Arrays.asList(players));
+        Set<Player> playersNoGo = new HashSet<>();
+        for (Player player : playerSet
+        ) {
+            for (String str : mySet
+            ) {
+                if (player.getPlayer_surname().equals(str)) {
+                    continue;
+                } else {
+                    playersNoGo.add(player);
+                }
+            }
+        }
+        return playersNoGo;
+    }
+
+    @Override
+    public GoalScore createGoalScore(Game game, Set<Player> players) {
         GoalScore goal = GoalScore.builder()
                 .game(game)
-                .player(player)
+                .player(random.create(players))
                 .goal_time(random.timeRandomGoal())
                 .build();
         enityDaoImplGoalScore.create(goal);
@@ -157,10 +184,10 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public GoalConceded createGoalConceded(Game game, Player player, Integer time) {
+    public GoalConceded createGoalConceded(Game game, Set<Player> players) {
         GoalConceded goalConc = GoalConceded.builder()
                 .game(game)
-                .player(player)
+                .player(random.create(players))
                 .conceded_time(random.timeRandomGoal())
                 .build();
         enityDaoImplGoalConceded.create(goalConc);
@@ -168,34 +195,34 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public YellowCard createYellowCard(Game game, Player player, Integer time) {
+    public YellowCard createYellowCard(Game game, Set<Player> players) {
         YellowCard yc = YellowCard.builder()
                 .game(game)
-                .player(player)
-                .card_time(time)
+                .player(random.create(players))
+                .card_time(random.timeRandomYC())
                 .build();
         enityDaoImplYellowCard.create(yc);
         return yc;
     }
 
     @Override
-    public RedCard createRedCard(Game game, Player player, Integer time) {
+    public RedCard createRedCard(Game game, Set<Player> players) {
         RedCard rc = RedCard.builder()
                 .game(game)
-                .player(player)
-                .card_time(time)
+                .player(random.create(players))
+                .card_time(random.timeRandomRC())
                 .build();
         enityDaoImplRedCard.create(rc);
         return rc;
     }
 
     @Override
-    public Substitution createSubs(Game game, Player playerIn, Player playerOut, Integer time) {
+    public Substitution createSubs(Game game, Set<Player> playersIn, Set<Player> playersOut) {
         Substitution subs = Substitution.builder()
                 .game(game)
-                .playerIn(playerIn)
-                .playerOut(playerOut)
-                .subs_time(time)
+                .playerIn(random.create(playersIn))
+                .playerOut(random.create(playersOut))
+                .subs_time(random.timeRandomSubs())
                 .build();
         enityDaoImplSubstitution.create(subs);
         return subs;
@@ -211,103 +238,160 @@ public class GameServiceImpl implements GameService {
         return games;
     }
 
+//    @Override
+//    public List<String> showGameAndStats(Game game, Set<GoalScore> goal, Set<GoalConceded> goalConc, Set<YellowCard> yc, Set<RedCard> rc, Set<Substitution> subs) {
+//        return null;
+//    }
+
     @Override
-    public List<String> showGameAndStats(Game game, Set<GoalScore> goal, Set<GoalConceded> goalConc, Set<YellowCard> yc, Set<RedCard> rc, Set<Substitution> subs) {
-        return null;
+    public List<String> showGameAndStats(GameService service, Game game, Set<Player> start, Set<Player> noStart) {
+        if (game.getGoal_score() != 0) {
+            for (int i = 1; i <= game.getGoal_score(); i++) {
+
+                service.createGoalScore(game, start);
+            }
+        }
+
+        if (game.getGoals_conceded() != 0) {
+            for (int i = 1; i <= game.getGoals_conceded(); i++) {
+
+                service.createGoalConceded(game, start);
+            }
+        }
+
+        if (game.getYellow_card_score() != 0) {
+            for (int i = 1; i <= game.getYellow_card_score(); i++) {
+                service.createYellowCard(game, start);
+            }
+        }
+
+        if (game.getRed_card_score() != 0) {
+            for (int i = 1; i <= game.getRed_card_score(); i++) {
+                service.createYellowCard(game, start);
+            }
+        }
+
+
+        for (int i = 1; i <= random.countSubs(); i++) {
+            service.createSubs(game, start, noStart);
+        }
+
+        List<GoalScore> goal = enityDaoImplGoalScore.findAll();
+        List<GoalConceded> goalConc = enityDaoImplGoalConceded.findAll();
+        List<YellowCard> yellow = enityDaoImplYellowCard.findAll();
+        List<RedCard> red = enityDaoImplRedCard.findAll();
+        List<Substitution> subs = enityDaoImplSubstitution.findAll();
+
+        List<GoalScore> goalAdd = new ArrayList<>();
+        List<GoalConceded> goalConcAdd = new ArrayList<>();
+        List<YellowCard> yellowAdd = new ArrayList<>();
+        List<RedCard> redAdd = new ArrayList<>();
+        List<Substitution> subsAdd = new ArrayList<>();
+
+
+        List<Integer> timeMoment = new ArrayList<>();
+        for (GoalScore goals : goal
+        ) {
+            if (goals.getGame().getGame_id() == game.getGame_id()) {
+                timeMoment.add(goals.getGoal_time());
+                goalAdd.add(goals);
+            }
+        }
+
+        for (GoalConceded goalConceded : goalConc
+        ) {
+            if (goalConceded.getGame().getGame_id() == game.getGame_id()) {
+                timeMoment.add(goalConceded.getConceded_time());
+                goalConcAdd.add(goalConceded);
+            }
+        }
+
+        for (YellowCard yc : yellow
+        ) {
+            if (yc.getGame().getGame_id() == game.getGame_id()) {
+                timeMoment.add(yc.getCard_time());
+                yellowAdd.add(yc);
+            }
+        }
+
+        for (RedCard rc : red
+        ) {
+            if (rc.getGame().getGame_id() == game.getGame_id()) {
+                timeMoment.add(rc.getCard_time());
+                redAdd.add(rc);
+            }
+        }
+
+        for (Substitution subst : subs
+        ) {
+            if (subst.getGame().getGame_id() == game.getGame_id()) {
+                timeMoment.add(subst.getSubs_time());
+                subsAdd.add(subst);
+            }
+        }
+        Collections.sort(timeMoment);
+
+        int countGoal = 0;
+        int countConc = 0;
+
+        List<String> listInfo = new ArrayList<>();
+
+
+
+
+
+
+
+        for (int counter : timeMoment) {
+            for (GoalScore goalScore : goalAdd
+            ) {
+                if (goalScore.getGoal_time() == counter) {
+                    countGoal++;
+                    listInfo.add(goalScore.getGoal_time() + "' GOOOOAAAAL! "
+                            + goalScore.getPlayer().getPlayer_surname() + " " +
+                            countGoal + ":" + countConc);
+                }
+            }
+
+            for (GoalConceded gc : goalConcAdd
+            ) {
+                if (gc.getConceded_time() == counter) {
+                    countConc++;
+                    listInfo.add(gc.getConceded_time() + " Goal missed! "
+                            + countGoal + ":" + countConc);
+                }
+            }
+
+            for (YellowCard yellowCard : yellowAdd
+            ) {
+                if (yellowCard.getCard_time() == counter) {
+                    listInfo.add(yellowCard.getCard_time() + " Yellow card! "
+                            + yellowCard.getPlayer().getPlayer_surname());
+                }
+            }
+
+            for (RedCard redCard : redAdd
+            ) {
+                if (redCard.getCard_time() == counter) {
+                    listInfo.add(redCard.getCard_time() + " Red card! "
+                            + redCard.getPlayer().getPlayer_surname());
+                    start.remove(redCard.getPlayer());
+                }
+            }
+
+//            for (Substitution substitution : subsAdd
+//            ) {
+//                if (substitution.getSubs_time() == counter) {
+//                    listInfo.add(substitution.getSubs_time() + " Substitution! Out: "
+//                            + substitution.getPlayerIn().getPlayer_surname() + " In:" + substitution.getPlayerOut().getPlayer_surname());
+//                    start.remove(substitution.getPlayerOut());
+//                    start.add(substitution.getPlayerIn());
+//                }
+//            }
+        }
+        return listInfo;
     }
 
-//    @Override
-//    public List<String> showGameAndStats(Game game, Set<GoalScore> goal,
-//                                         Set<GoalConceded> goalConc,
-//                                         Set<YellowCard> yc,
-//                                         Set<RedCard> rc,
-//                                         Set<Substitution> subs) {
-//        System.out.println("Data game: " + game.getGame_date());
-//        System.out.println("----------------------------");
-//        System.out.println(game.getTeamGame().getTeam_name() +
-//                " VS " + game.getOpponent_name());
-//        System.out.println("----------------------------");
-//        System.out.println("GAME PROGRESS:");
-//        System.out.println("----------------------------");
-//
-//        int countGoal = 0;
-//        int countConc = 0;
-//
-//        Map<Integer, String> strGoal = new HashMap<>();
-//        for (GoalScore g : goal
-//        ) {
-//            System.out.println("GOOOOOOOOOOOOL!!! :-)");
-//            System.out.println(g.getPlayer().getPlayer_surname()
-//                    + " " + g.getGoal_time() + "'");
-//            strGoal.put(g.getGoal_time(), g.getPlayer().getPlayer_surname());
-//            countGoal++;
-//            System.out.println(countGoal + ":" + countConc);
-//            System.out.println("----------------------------");
-//            goalScores.add(g);
-//        }
-//
-//        for (GoalConceded gc : goalConc
-//        ) {
-//            System.out.println(gc.getConceded_time() + "'" + " Goal missed!!! :-(");
-//            countConc++;
-//            System.out.println(countGoal + ":" + countConc);
-//            System.out.println("----------------------------");
-//        }
-//
-//        for (YellowCard ycrd : yc
-//        ) {
-//            System.out.println("Yellow card!");
-//            System.out.println(ycrd.getPlayer().getPlayer_surname()
-//                    + " " + ycrd.getCard_time() + "'");
-//            System.out.println("----------------------------");
-//            yellowCards.add(ycrd);
-//        }
-//
-//        for (RedCard rcrd : rc
-//        ) {
-//            System.out.println("Red card!");
-//            System.out.println(rcrd.getPlayer().getPlayer_surname()
-//                    + " " + rcrd.getCard_time() + "'");
-//            System.out.println("----------------------------");
-//            redCards.add(rcrd);
-//        }
-//
-//        for (Substitution subst : subs
-//        ) {
-//            System.out.println("SUBSTITUTION:");
-//            System.out.println(subst.getSubs_time() + "'");
-//            System.out.println("Entered the game: " + subst.getPlayerIn().getPlayer_surname());
-//            System.out.println("Left the game: " + subst.getPlayerOut().getPlayer_surname());
-//            System.out.println("----------------------------");
-//        }
-//        System.out.println("End of the game");
-//        System.out.println("----------------------------");
-//        System.out.println("RESULT: " + game.getGoal_score() + ":" + game.getGoals_conceded());
-//
-//        Iterator<Map.Entry<Integer, String>> entries = strGoal.entrySet().iterator();
-//        while (entries.hasNext()) {
-//            Map.Entry<Integer, String> entry = entries.next();
-//            System.out.println(entry.getKey() + "' " + entry.getValue());
-//        }
-//        System.out.println("Yellow card:" + game.getYellow_card_score());
-//        System.out.println("Red card:" + game.getRed_card_score());
-//        System.out.println("-----------------------");
-//        String str = game.toString();
-//        String str1 = goal.toString();
-//        String str2 = goalConc.toString();
-//        String str3 = yc.toString();
-//        String str4 = rc.toString();
-//        String str5 = subs.toString();
-//        List<String> list = new ArrayList<>();
-//        list.add(str);
-//        list.add(str1);
-//        list.add(str2);
-//        list.add(str3);
-//        list.add(str4);
-//        list.add(str4);
-//        list.add(str5);
-//        return list;
-//    }
 
     @Override
     public void deleteGame(Integer id) throws SQLException {
@@ -323,7 +407,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Game findGameById(Integer id) throws SQLException  {
+    public Game findGameById(Integer id) throws SQLException {
         return enityDaoImplGame.findOne(id);
     }
 }

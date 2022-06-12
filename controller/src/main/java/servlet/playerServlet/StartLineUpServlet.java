@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Set;
 
 @WebServlet("/startLineup")
@@ -23,7 +24,7 @@ public class StartLineUpServlet extends HttpServlet {
         TeamService teamService = new TeamServiceImpl();
         GameService gameService = new GameServiceImpl();
         int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("id", id);//id игры
+        request.setAttribute("id", id);//id команды
 
         try {
             Game game = gameService.findGameById(id);
@@ -48,10 +49,19 @@ public class StartLineUpServlet extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             request.setAttribute("id", id);
             String[] players = request.getParameterValues("player");
-            Set<Player> playersGo = gameService.startGamePlayer(id,players);
-            Game game = gameService.addPlayersInGame(id,playersGo);
+            Set<Player> playersGo = gameService.startGamePlayer(id, players);
+            Set<Player> playersNoGo = gameService.noStartGamePlayer(id, players);
+            Game game = gameService.findGameById(id);
+            List<String> info = gameService.showGameAndStats(gameService, game, playersGo, playersNoGo);
+            request.setAttribute("id", id);
+//            request.setAttribute("playersGo", playersGo);
+//            request.setAttribute("playersNoGo", playersNoGo);
             request.setAttribute("game", game);
-            request.setAttribute("players", playersGo);
+//            request.setAttribute("players", players);
+            request.setAttribute("info", info);
+//            Set<Game> gameSet =
+//                    gameService.showAllGameTeamInfo(game.getTeamGame().getTeam_id());
+//            gameService.opponentRemoveTeam(gameService,game,gameSet);
             request.getServletContext().getRequestDispatcher("/player-jsp/goPlayer.jsp").forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();

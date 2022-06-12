@@ -19,7 +19,6 @@ public class GameServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         GameService gameService = new GameServiceImpl();
         int id = Integer.parseInt(request.getParameter("id"));
-
         Set<Game> gameSet =
                 gameService.showAllGameTeamInfo(id);
         Map<Integer,String> games =

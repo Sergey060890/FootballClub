@@ -31,23 +31,23 @@ public interface GameService {
     /**
      * Create Goal score
      */
-    GoalScore createGoalScore(Game game, Player player, Integer time);
+    GoalScore createGoalScore(Game game, Set<Player> players);
     /**
      * Create Goal conceded
      */
-    GoalConceded createGoalConceded(Game game, Player player, Integer time);
+    GoalConceded createGoalConceded(Game game, Set<Player> players);
     /**
      * Create yellow card
      */
-    YellowCard createYellowCard(Game game, Player player, Integer time);
+    YellowCard createYellowCard(Game game, Set<Player> players);
     /**
      * Create red card
      */
-    RedCard createRedCard(Game game, Player player, Integer time);
+    RedCard createRedCard(Game game, Set<Player> players);
     /**
      * Create substitution
      */
-    Substitution createSubs(Game game, Player playerIn, Player playerOut, Integer time);
+    Substitution createSubs(Game game, Set<Player> playersIn, Set<Player> playersOut);
 
     /**
      * Print AllPlayerGameInfo
@@ -57,11 +57,7 @@ public interface GameService {
     /**
      * Print GameStats
      */
-    List<String> showGameAndStats(Game game, Set<GoalScore> goal,
-                                  Set<GoalConceded> goalConc,
-                                  Set<YellowCard> yc,
-                                  Set<RedCard> rc,
-                                  Set<Substitution> subs);
+    public List<String> showGameAndStats(GameService service, Game game, Set<Player> start, Set<Player> noStart);
 
     List<GameDTO> findAll();
 
@@ -79,4 +75,8 @@ public interface GameService {
     Set<Player> showAllGamePlayerInfo(Integer id) throws SQLException;
 
     Set<Player> startGamePlayer(Integer id , String[] players) throws SQLException;
+
+    Set<Player> noStartGamePlayer(Integer id, String[] players) throws SQLException;
+
+    Map<Integer, String> opponentRemoveTeam(GameService service, Game game, Set<Game> gameSet);
 }

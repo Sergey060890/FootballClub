@@ -15,7 +15,7 @@
 <body>
 <%@include file="/other-jsp/headerTeam.jsp" %>
 <center>
-<h3>Please select starting lineup!</h3>
+<h2>Please select starting lineup!</h2>
 </center>
 <jsp:useBean id="id" scope="request" type="java.lang.Integer"/>
 <jsp:useBean id="game" scope="request" type="footballclub.entity.Game"/>
@@ -132,7 +132,7 @@
 <%--        </select>--%>
 <%--        <br><br>--%>
     <c:forEach var="player" items="${players}">
-        <input type="checkbox" name="player" style="position: center" value=${player.player_surname} unchecked />${player.player_surname} ${player.position}
+        <input type="checkbox" name="player" style="position: center " value=${player.player_surname} unchecked />${player.player_surname} ${player.position}
         <br>
     </c:forEach>
 
