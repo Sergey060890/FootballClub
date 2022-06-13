@@ -19,12 +19,13 @@ import java.util.Set;
 
 @WebServlet("/startLineup")
 public class StartLineUpServlet extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         TeamService teamService = new TeamServiceImpl();
         GameService gameService = new GameServiceImpl();
-        int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("id", id);//id команды
+        int id = Integer.parseInt(request.getParameter("id"));//id игры
+        request.setAttribute("id", id);//id игры
 
         try {
             Game game = gameService.findGameById(id);
@@ -32,13 +33,15 @@ public class StartLineUpServlet extends HttpServlet {
             if (game != null) {
                 request.setAttribute("game", game);
                 request.setAttribute("players", players1);
-                request.getServletContext().getRequestDispatcher("/player-jsp/startLineup.jsp").forward(request, response);
+                request.getServletContext()
+                        .getRequestDispatcher("/player-jsp/startLineup.jsp").forward(request, response);
             } else {
-                request.getServletContext().getRequestDispatcher("/other-jsp/notfound.jsp").forward(request, response);
+                request.getServletContext()
+                        .getRequestDispatcher("/other-jsp/notfound.jsp").forward(request, response);
             }
-        }
-        catch(Exception ex) {
-            request.getServletContext().getRequestDispatcher("/other-jsp/notfound.jsp").forward(request, response);
+        } catch (Exception ex) {
+            request.getServletContext()
+                    .getRequestDispatcher("/other-jsp/notfound.jsp").forward(request, response);
         }
     }
 
@@ -46,26 +49,23 @@ public class StartLineUpServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             GameService gameService = new GameServiceImpl();
-            int id = Integer.parseInt(request.getParameter("id"));
-            request.setAttribute("id", id);
-            String[] players = request.getParameterValues("player");
-            Set<Player> playersGo = gameService.startGamePlayer(id, players);
-            Set<Player> playersNoGo = gameService.noStartGamePlayer(id, players);
+            int id = Integer.parseInt(request.getParameter("id"));//ID игры
             Game game = gameService.findGameById(id);
-            List<String> info = gameService.showGameAndStats(gameService, game, playersGo, playersNoGo);
+            String[] players = request.getParameterValues("player");
+            Set<Player> playersGo = gameService.
+                    startGamePlayer(game.getTeamGame().getTeam_id(), players);
+            Set<Player> playersNoGo = gameService.
+                    noStartGamePlayer(game.getTeamGame().getTeam_id(), players);
+            List<String> info = gameService.
+                    showGameAndStats(gameService, game, playersGo, playersNoGo);
             request.setAttribute("id", id);
-//            request.setAttribute("playersGo", playersGo);
-//            request.setAttribute("playersNoGo", playersNoGo);
+            request.setAttribute("players", playersGo);
             request.setAttribute("game", game);
-//            request.setAttribute("players", players);
             request.setAttribute("info", info);
-//            Set<Game> gameSet =
-//                    gameService.showAllGameTeamInfo(game.getTeamGame().getTeam_id());
-//            gameService.opponentRemoveTeam(gameService,game,gameSet);
-            request.getServletContext().getRequestDispatcher("/player-jsp/goPlayer.jsp").forward(request, response);
+            request.getServletContext()
+                    .getRequestDispatcher("/player-jsp/goPlayer.jsp").forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 }

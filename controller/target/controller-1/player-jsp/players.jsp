@@ -34,44 +34,44 @@
 
         <jsp:useBean id="players" scope="request" type="java.util.List"/>
         <c:forEach var="player" items="${players}">
-            <tr>
-                <td>${player.player_name}</td>
-                <td>${player.player_surname}</td>
-                <td>${player.country}</td>
-                <td>
-                    <center>
+        <tr>
+            <td>${player.player_name}</td>
+            <td>${player.player_surname}</td>
+            <td>${player.country}</td>
+            <td>
+                <center>
                         ${player.age}
-                    </center>
-                </td>
-                <td>
-                    </center>
-                        ${player.position}</td>
-                    </center>
-                <td>
+                </center>
+            </td>
+            <td>
+</center>
+    ${player.position}</td>
+</center>
+<td>
 
 
-                    <a class="gradient-button" href='<c:url value="selection?id=${team.team_id}" />'>SELECT</a>
+    <a class="gradient-button" href='<c:url value="selection?id=${team.team_id}" />'>SELECT</a>
 
-                </td>
+</td>
 
-                <td>
+<td>
 
-                    <a class="gradient-button" href='<c:url value="edit?id=${team.team_id}" />'>EDIT</a>
+    <a class="gradient-button" href='<c:url value="edit?id=${team.team_id}" />'>EDIT</a>
 
-                </td>
+</td>
 
-                <td>
+<td>
 
-                    <a class="gradient-button" href='<c:url value="deletePlayer?id=${player.player_id}" />'>DELETE PLAYER</a>
+    <a class="gradient-button" href='<c:url value="deletePlayer?id=${player.player_id}" />'>DELETE PLAYER</a>
 
-                </td>
-            </tr>
-        </c:forEach>
+</td>
+</tr>
+</c:forEach>
 
-    </table>
-    <a class="gradient-button1" href="createPlayer">ADD PLAYER</a>
+</table>
+<a class="gradient-button1" href="createPlayer">ADD PLAYER</a>
 
-    <a class="gradient-button1" href="TeamServlet">BACK</a>
+<a class="gradient-button1" href="TeamServlet">BACK</a>
 
 </center>
 </body>

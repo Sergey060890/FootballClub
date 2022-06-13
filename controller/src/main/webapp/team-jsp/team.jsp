@@ -24,7 +24,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
             integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
             crossorigin="anonymous"></script>
-<body>
+<body style="background: url(image/pexelsphoto1594932.jpeg)">
 <%@include file="/other-jsp/headerTeam.jsp" %>
 <center>
     <h2>Team management</h2>
@@ -42,9 +42,9 @@
                 <td>${team.team_name}</td>
                 <td>${team.city}</td>
                 <center>
-                <td>
-                    <a class="gradient-button" href='<c:url value="player?id=${team.team_id}" />'>SELECT</a>
-                </td>
+                    <td>
+                        <a class="gradient-button" href='<c:url value="player?id=${team.team_id}" />'>SELECT</a>
+                    </td>
                 </center>
             </tr>
         </c:forEach>

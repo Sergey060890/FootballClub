@@ -64,7 +64,7 @@ public interface TeamService {
 
     Team findTeamId(Integer id) throws SQLException;
 
-    void deleteAllPlayerTeam(TeamService teamService,PlayerService playerService, Integer id) throws SQLException;
+    void deleteAllPlayerTeam(TeamService teamService, PlayerService playerService, Integer id) throws SQLException;
 
     void deleteAllGameTeam(GameService gameService, Integer id) throws SQLException;
 }

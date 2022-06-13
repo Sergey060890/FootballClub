@@ -14,12 +14,14 @@ public interface PlayerService {
     Player createPlayer(String name, String surname,
                         String country, Integer age,
                         String position);
+
     /**
      * Update team
      */
     void updateTeam(Player player, Team team);
 
     Player addPlayerInTeam(Player player, Team team);
+
     /**
      * Update position
      */
@@ -34,6 +36,4 @@ public interface PlayerService {
     public void updatePlayer(Integer id, String playerName, String playerSurname,
                              String country, Integer age,
                              String position) throws SQLException;
-
-
 }

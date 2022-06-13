@@ -23,7 +23,7 @@ public interface GameService {
     Game createGame(Team team, String opponentTeam) throws SQLException;
 
     Game createGameNoPlayers(Team team,
-                                    String opponentTeam);
+                             String opponentTeam);
 
 
     Game addPlayersInGame(Integer idGame, Set<Player> players) throws SQLException;
@@ -32,18 +32,22 @@ public interface GameService {
      * Create Goal score
      */
     GoalScore createGoalScore(Game game, Set<Player> players);
+
     /**
      * Create Goal conceded
      */
     GoalConceded createGoalConceded(Game game, Set<Player> players);
+
     /**
      * Create yellow card
      */
     YellowCard createYellowCard(Game game, Set<Player> players);
+
     /**
      * Create red card
      */
     RedCard createRedCard(Game game, Set<Player> players);
+
     /**
      * Create substitution
      */
@@ -61,20 +65,20 @@ public interface GameService {
 
     List<GameDTO> findAll();
 
-    Map<Integer,String> showAllOpponentTeamInfo(Set<Game> gameSet);
+    Map<Integer, String> showAllOpponentTeamInfo(Set<Game> gameSet);
 
     Set<Game> showAllGameTeamInfo(Integer id);
 
     void deleteGame(Integer id) throws SQLException;
 
     void updateGame(Integer id,
-                           String opponentTeam) throws SQLException;
+                    String opponentTeam) throws SQLException;
 
     Game findGameById(Integer id) throws SQLException;
 
     Set<Player> showAllGamePlayerInfo(Integer id) throws SQLException;
 
-    Set<Player> startGamePlayer(Integer id , String[] players) throws SQLException;
+    Set<Player> startGamePlayer(Integer id, String[] players) throws SQLException;
 
     Set<Player> noStartGamePlayer(Integer id, String[] players) throws SQLException;
 

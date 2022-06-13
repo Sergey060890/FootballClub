@@ -23,14 +23,4 @@ public class TeamDTO implements Serializable {
     private String coach;
     private Set<Player> players;
     private Set<Game> games;
-
-//    public TeamDTO(Team team) {
-//        this.team_id = team.getTeam_id();
-//        this.team_name = team.getTeam_name();
-//        this.city = team.getCity();
-//        this.country = team.getCountry();
-//        this.stadium = team.getStadium();
-//        this.coach = team.getCoach();
-//    }
-
 }

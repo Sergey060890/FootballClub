@@ -1,8 +1,5 @@
 package managment;
 
-import java.time.LocalDate;
-import java.time.Month;
-
 public class ConstansManager {
     public static final String TEAM_NAME = "REAL";
     public static final String TEAM_CITY = "MADRID";
@@ -41,8 +38,6 @@ public class ConstansManager {
     public static final Integer PLAYER_AGE_4 = 26;
     public static final String PLAYER_POSITION_4 = "RW";
 
-    public static final LocalDate GAME_DATE_1 =
-            LocalDate.of(2022, Month.APRIL, 2);
     public static final String RESULT_GAME_WIN = "WIN";
     public static final String RESULT_GAME_DRAW = "DRAW";
     public static final String RESULT_GAME_LOSE = "LOSE";

@@ -18,8 +18,8 @@
         text-decoration: none;
     }
 </style>
-<body style="background: url(/image/sunny_sunshine_weather_2778.png)">
-<div class="topnav">
+<body >
+<div class="topnav a:hover">
     <a class="active" href="StartServlet">Main page</a>
 
     <a href="https://www.euro-football.ru/">Football news</a>

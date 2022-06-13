@@ -33,6 +33,5 @@ public class MatchServlet extends HttpServlet {
             request.getServletContext().getRequestDispatcher("/other-jsp/notfound.jsp").forward(request, response);
         }
     }
-
-
 }
+

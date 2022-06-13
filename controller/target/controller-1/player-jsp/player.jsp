@@ -28,46 +28,49 @@
             <th>Name</th>
             <th>Surname</th>
             <th>Position</th>
-            <th colspan="3"><center>Actions</center></th>
+            <th colspan="3">
+                <center>Actions</center>
+            </th>
         </tr>
 
         <jsp:useBean id="id" scope="request" type="java.lang.Integer"/>
         <jsp:useBean id="players" scope="request" type="java.util.Set"/>
-                <c:forEach var="player" items="${players}">
+        <c:forEach var="player" items="${players}">
 
-        <%--        <jsp:useBean id="teams" scope="request" type="java.util.Set"/>--%>
-        <%--        <c:forEach var="team" items="${teams}">--%>
+            <%--        <jsp:useBean id="teams" scope="request" type="java.util.Set"/>--%>
+            <%--        <c:forEach var="team" items="${teams}">--%>
 
-        <%--        <jsp:useBean id="games" scope="request" type="java.util.Set"/>--%>
-        <%--        <c:forEach var="game" items="${games}">--%>
+            <%--        <jsp:useBean id="games" scope="request" type="java.util.Set"/>--%>
+            <%--        <c:forEach var="game" items="${games}">--%>
 
-        <tr>
-            <td>
-                    ${player.player_name}
-            </td>
+            <tr>
+                <td>
+                        ${player.player_name}
+                </td>
 
-            <td>
-                    ${player.player_surname}
-            </td>
+                <td>
+                        ${player.player_surname}
+                </td>
 
-            <td>
-                    ${player.position}
-            </td>
+                <td>
+                        ${player.position}
+                </td>
 
-            <td>
-                <a class="gradient-button" href='<c:url value="informationPlayer?id=${player.player_id}" />'>INFORMATION</a>
-            </td>
+                <td>
+                    <a class="gradient-button" href='<c:url value="informationPlayer?id=${player.player_id}" />'>INFORMATION</a>
+                </td>
 
-            <td>
-                <a class="gradient-button" href='<c:url value="editPlayer?id=${player.player_id}" />'>EDIT</a>
-            </td>
+                <td>
+                    <a class="gradient-button" href='<c:url value="editPlayer?id=${player.player_id}" />'>EDIT</a>
+                </td>
 
-            <td>
-                <a class="gradient-button" href='<c:url value="deletePlayer?id=${player.player_id}" />'>DELETE PLAYER</a>
-            </td>
+                <td>
+                    <a class="gradient-button" href='<c:url value="deletePlayer?id=${player.player_id}" />'>DELETE
+                        PLAYER</a>
+                </td>
 
-        </tr>
-                </c:forEach>
+            </tr>
+        </c:forEach>
 
     </table>
 

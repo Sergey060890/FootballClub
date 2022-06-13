@@ -13,7 +13,7 @@
 <%@ page import="footballclub.entity.Game" %>
 <%@ page import="servlet.teamServlet.TeamServlet" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page isELIgnored = "false" %>
+<%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 
@@ -27,18 +27,14 @@
         <caption><b>My upcoming games</b></caption>
         <tr>
             <th>Opponent</th>
-            <th colspan="3"><center>Actions</center></th>
+            <th colspan="3">
+                <center>Actions</center>
+            </th>
         </tr>
-<%--        <jsp:useBean id="gameplay" scope="request" type="footballclub.entity.Game"/>--%>
+        <%--        <jsp:useBean id="gameplay" scope="request" type="footballclub.entity.Game"/>--%>
         <jsp:useBean id="id" scope="request" type="java.lang.Integer"/>
         <jsp:useBean id="games" scope="request" type="java.util.Map"/>
         <c:forEach var="game" items="${games}">
-
-            <%--        <jsp:useBean id="teams" scope="request" type="java.util.Set"/>--%>
-            <%--        <c:forEach var="team" items="${teams}">--%>
-
-            <%--        <jsp:useBean id="games" scope="request" type="java.util.Set"/>--%>
-            <%--        <c:forEach var="game" items="${games}">--%>
 
             <tr>
 
@@ -55,7 +51,8 @@
                 </td>
 
                 <td>
-                    <a class="gradient-button" href='<c:url value="deleteGame?id=${game.getKey()}" />'>Refuse to play</a>
+                    <a class="gradient-button" href='<c:url value="deleteGame?id=${game.getKey()}" />'>Refuse to
+                        play</a>
                 </td>
 
             </tr>

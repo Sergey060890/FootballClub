@@ -17,14 +17,17 @@
 --%>
 <html>
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"></script>
 <body>
 
 <%@include file="/other-jsp/header.jsp" %>
 <center>
     <table border="3" width="50%">
-<%--        <caption><b>My club info</b></caption>--%>
+        <%--        <caption><b>My club info</b></caption>--%>
         <tr>
             <th>NAME</th>
             <th>CITY</th>
@@ -64,7 +67,7 @@
 
     </table>
     <a class="gradient-button1" href='<c:url value="edit?id=${id}" />'>EDIT TEAM</a>
-    <button type="button"  class="gradient-button1"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="gradient-button1" data-bs-toggle="modal" data-bs-target="#exampleModal">
         DELETE
     </button>
 
@@ -77,7 +80,8 @@
                         <h3 class="modal-title" id="exampleModalLabel">ВНИМАНИЕ!</h3>
                         <%--                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">--%>
                         <%--                                    <span aria-hidden="true">&times;</span>--%>
-                    </center>    <%--                                </button>--%>
+                    </center>
+                    <%--                                </button>--%>
                 </div>
                 <div class="modal-body">
                     При удалении будут потеряны все игроки и игры связанные с данной командой!
@@ -90,11 +94,13 @@
         </div>
     </div>
 
-<%--    <a class="gradient-button1" href='<c:url value="playerLineUp?id=${id}" />'>Team line-up</a>--%>
-<%--    <a class="gradient-button1" href="TeamServlet">Team statistics</a>--%>
+    <%--    <a class="gradient-button1" href='<c:url value="playerLineUp?id=${id}" />'>Team line-up</a>--%>
+    <%--    <a class="gradient-button1" href="TeamServlet">Team statistics</a>--%>
     <a class="gradient-button1" href="TeamServlet">BACK</a>
 </center>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>

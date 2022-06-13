@@ -6,20 +6,9 @@ import java.sql.SQLException;
 import java.util.Random;
 import java.util.Set;
 
+import static Random.ConstansRandom.*;
+
 public class RandomResult {
-
-    public static final int MIN_GOAL = 0;
-    public static final int MAX_GOAL = 6;
-    public static final String WIN = "WIN";
-    public static final String DRAW = "DRAW";
-    public static final String LOSE = "LOSE";
-    public static final int INT_0 = 0;
-    public static final int INT_1 = 1;
-    public static final int INT_2 = 2;
-    public static final int INT_3 = 3;
-    public static final int MIN_TIME = 1;
-    public static final int MAX_TIME= 94;
-
 
     public int randomGoal() {
         int i = MIN_GOAL + (int) (Math.random() * MAX_GOAL);
@@ -60,22 +49,22 @@ public class RandomResult {
         return n;
     }
 
-    public int timeRandomGoal(){
+    public int timeRandomGoal() {
         int i = MIN_TIME + (int) (Math.random() * MAX_TIME);
         return i;
     }
 
-    public int timeRandomYC(){
+    public int timeRandomYC() {
         int i = MIN_TIME + (int) (Math.random() * MAX_TIME);
         return i;
     }
 
-    public int timeRandomRC(){
+    public int timeRandomRC() {
         int i = MIN_TIME + (int) (Math.random() * MAX_TIME);
         return i;
     }
 
-    public int timeRandomSubs(){
+    public int timeRandomSubs() {
         int i = MIN_TIME + (int) (Math.random() * MAX_TIME);
         return i;
     }
@@ -97,14 +86,5 @@ public class RandomResult {
         player = (Player) players.toArray()[i];
         return player;
     }
-
-    public static void main(String[] args) {
-        RandomResult random = new RandomResult();
-//        System.out.println(" GOOOOAAAL min-" +random.timeRandomGoal());
-//        System.out.println(" Yellow card min-" +random.timeRandomYC());
-//        System.out.println("Red card min"  + random.timeRandomRC());
-//        System.out.println("Subs" + random.timeRandomSubs());
-    }
-
 
 }

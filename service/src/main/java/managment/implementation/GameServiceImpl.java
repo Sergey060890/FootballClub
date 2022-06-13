@@ -32,6 +32,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GameServiceImpl implements GameService {
+    public static final String RED_CARD = " Red card! ";
+    public static final String YELLOW_CARD = " Yellow card! ";
+    public static final String STRING = ":";
+    public static final String GOAL_MISSED = " Goal missed! ";
+    public static final String GOOOOAAAAL = "' GOOOOAAAAL! ";
+    public static final String STRING1 = " ";
+
     EnityDaoImplGame enityDaoImplGame =
             new EnityDaoImplGame();
     EnityDaoImplGoalScore enityDaoImplGoalScore =
@@ -106,7 +113,7 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public Map<Integer, String> opponentRemoveTeam(GameService service, Game game, Set<Game> gameSet) {
-        Map<Integer,String> games =
+        Map<Integer, String> games =
                 service.showAllOpponentTeamInfo(gameSet);
         for (Game g : gameSet
         ) {
@@ -233,21 +240,14 @@ public class GameServiceImpl implements GameService {
     public Set<Game> showAllPlayerGame(Game game) {
         Set<Game> games = new HashSet<>();
         games.add(game);
-        System.out.println("Players who took part in the game: ");
         System.out.println(game.getPlayers());
         return games;
     }
-
-//    @Override
-//    public List<String> showGameAndStats(Game game, Set<GoalScore> goal, Set<GoalConceded> goalConc, Set<YellowCard> yc, Set<RedCard> rc, Set<Substitution> subs) {
-//        return null;
-//    }
 
     @Override
     public List<String> showGameAndStats(GameService service, Game game, Set<Player> start, Set<Player> noStart) {
         if (game.getGoal_score() != 0) {
             for (int i = 1; i <= game.getGoal_score(); i++) {
-
                 service.createGoalScore(game, start);
             }
         }
@@ -336,20 +336,14 @@ public class GameServiceImpl implements GameService {
 
         List<String> listInfo = new ArrayList<>();
 
-
-
-
-
-
-
         for (int counter : timeMoment) {
             for (GoalScore goalScore : goalAdd
             ) {
                 if (goalScore.getGoal_time() == counter) {
                     countGoal++;
-                    listInfo.add(goalScore.getGoal_time() + "' GOOOOAAAAL! "
-                            + goalScore.getPlayer().getPlayer_surname() + " " +
-                            countGoal + ":" + countConc);
+                    listInfo.add(goalScore.getGoal_time() + GOOOOAAAAL
+                            + goalScore.getPlayer().getPlayer_surname() + STRING1 +
+                            countGoal + STRING + countConc);
                 }
             }
 
@@ -357,15 +351,15 @@ public class GameServiceImpl implements GameService {
             ) {
                 if (gc.getConceded_time() == counter) {
                     countConc++;
-                    listInfo.add(gc.getConceded_time() + " Goal missed! "
-                            + countGoal + ":" + countConc);
+                    listInfo.add(gc.getConceded_time() + GOAL_MISSED
+                            + countGoal + STRING + countConc);
                 }
             }
 
             for (YellowCard yellowCard : yellowAdd
             ) {
                 if (yellowCard.getCard_time() == counter) {
-                    listInfo.add(yellowCard.getCard_time() + " Yellow card! "
+                    listInfo.add(yellowCard.getCard_time() + YELLOW_CARD
                             + yellowCard.getPlayer().getPlayer_surname());
                 }
             }
@@ -373,7 +367,7 @@ public class GameServiceImpl implements GameService {
             for (RedCard redCard : redAdd
             ) {
                 if (redCard.getCard_time() == counter) {
-                    listInfo.add(redCard.getCard_time() + " Red card! "
+                    listInfo.add(redCard.getCard_time() + RED_CARD
                             + redCard.getPlayer().getPlayer_surname());
                     start.remove(redCard.getPlayer());
                 }

@@ -25,6 +25,7 @@ public class TeamServiceImpl implements TeamService {
             new EnityDaoImplPlayer();
 
     TeamDao enityDaoImplTeam = new EnityDaoImplTeam();
+
     @Override
     public Team createTeam(String teamName, String teamCity,
                            String teamCountry, String teamStadium,
@@ -73,7 +74,7 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public TeamDTO findTeamById(Integer id) throws SQLException  {
+    public TeamDTO findTeamById(Integer id) throws SQLException {
         return TeamMapper.mapFrom(enityDaoImplTeam.findOne(id));
     }
 
@@ -100,7 +101,7 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public Player showOnePlayerInfo(Integer id) throws SQLException {
-        Player player = enityDaoImplPlayer.findOne (id);
+        Player player = enityDaoImplPlayer.findOne(id);
         return player;
     }
 
@@ -117,10 +118,10 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public void deleteAllPlayerTeam(TeamService teamService, PlayerService playerService,Integer id) throws SQLException {
+    public void deleteAllPlayerTeam(TeamService teamService, PlayerService playerService, Integer id) throws SQLException {
         for (Player p : teamService.showAllPlayerTeamInfo(id)
         ) {
-                playerService.deletePlayer(p.getPlayer_id());
+            playerService.deletePlayer(p.getPlayer_id());
         }
     }
 
@@ -128,7 +129,7 @@ public class TeamServiceImpl implements TeamService {
     public void deleteAllGameTeam(GameService gameService, Integer id) throws SQLException {
         for (Game game : gameService.showAllGameTeamInfo(id)
         ) {
-                gameService.deleteGame(game.getGame_id());
+            gameService.deleteGame(game.getGame_id());
         }
     }
 }

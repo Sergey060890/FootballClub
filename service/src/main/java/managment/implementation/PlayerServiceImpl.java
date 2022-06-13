@@ -7,7 +7,6 @@ import footballclub.dao.interfaces.PlayerDao;
 import footballclub.entity.Player;
 import footballclub.entity.Team;
 import managment.interfaces.PlayerService;
-import managment.interfaces.TeamService;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,7 +21,6 @@ import java.util.stream.Collectors;
 public class PlayerServiceImpl implements PlayerService {
     PlayerDao enityDaoImplPlayer =
             new EnityDaoImplPlayer();
-    TeamService teamService = new TeamServiceImpl();
     public static List<Player> players = new ArrayList<>();
 
     @Override
@@ -63,8 +61,8 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public void updatePlayer(Integer id, String playerName, String playerSurname,
-                           String country, Integer age,
-                           String position) throws SQLException {
+                             String country, Integer age,
+                             String position) throws SQLException {
         Player player = enityDaoImplPlayer.findOne(id);
         player.setPlayer_name(playerName);
         player.setPlayer_surname(playerSurname);
@@ -75,7 +73,7 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public Player findPlayerById(Integer id) throws SQLException  {
+    public Player findPlayerById(Integer id) throws SQLException {
         return enityDaoImplPlayer.findOne(id);
     }
 

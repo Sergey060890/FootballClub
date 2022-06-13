@@ -18,5 +18,4 @@ public class PlayerDTO implements Serializable {
     private String country;
     private Integer age;
     private String position;
-//    private TeamDTO team;
 }
