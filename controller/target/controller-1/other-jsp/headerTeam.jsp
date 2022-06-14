@@ -18,8 +18,8 @@
         text-decoration: none;
     }
 </style>
-<body >
-<div class="topnav a:hover">
+<body>
+<div class="topnav">
     <a class="active" href="StartServlet">Main page</a>
 
     <a href="https://www.euro-football.ru/">Football news</a>

@@ -27,14 +27,12 @@
 <body style="background: url(image/pexelsphoto1594932.jpeg)">
 <%@include file="/other-jsp/headerTeam.jsp" %>
 <center>
-    <h2>Team management</h2>
+    <h2>My teams</h2>
     <table>
         <tr>
             <th>Team name</th>
             <th>City</th>
-            <th>
-                <center>Actions</center>
-            </th>
+            <th colspan="1"></th>
         </tr>
         <jsp:useBean id="teams" scope="request" type="java.util.List"/>
         <c:forEach var="team" items="${teams}">

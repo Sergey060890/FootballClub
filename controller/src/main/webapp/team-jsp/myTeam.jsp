@@ -26,6 +26,7 @@
 
 <%@include file="/other-jsp/header.jsp" %>
 <center>
+    <h2>My team information</h2>
     <table border="3" width="50%">
         <%--        <caption><b>My club info</b></caption>--%>
         <tr>
@@ -77,18 +78,18 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <center>
-                        <h3 class="modal-title" id="exampleModalLabel">ВНИМАНИЕ!</h3>
+                        <h3 class="modal-title" id="exampleModalLabel">Attention!</h3>
                         <%--                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">--%>
                         <%--                                    <span aria-hidden="true">&times;</span>--%>
                     </center>
                     <%--                                </button>--%>
                 </div>
                 <div class="modal-body">
-                    При удалении будут потеряны все игроки и игры связанные с данной командой!
+                    When a team is deleted, all its players, games and statistics will be lost!
                 </div>
                 <div class="modal-footer">
-                    <a href='<c:url value="delete?id=${id}" />' class="btn btn-primary">УДАЛИТЬ</a>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ОТМЕНА</button>
+                    <a href='<c:url value="delete?id=${id}" />' class="btn btn-primary">DELETE</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
                 </div>
             </div>
         </div>

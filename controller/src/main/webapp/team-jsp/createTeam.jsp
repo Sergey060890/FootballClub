@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Создание команд</title>
+    <title>Creation of teams</title>
 </head>
 <body>
 <%@include file="/other-jsp/headerTeam.jsp" %>

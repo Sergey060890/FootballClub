@@ -15,30 +15,41 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Set;
 
-@WebServlet("/createPlayer")
+@WebServlet(CreatePlayerServlet.CREATE_PLAYER)
 public class CreatePlayerServlet extends HttpServlet {
+
+    public static final String CREATE_PLAYER = "/createPlayer";
+    public static final String ID = "id";
+    public static final String PLAYER_JSP_CREATE_PLAYER_JSP = "/player-jsp/createPlayer.jsp";
+    public static final String NAME = "name";
+    public static final String SURNAME = "surname";
+    public static final String CONTRARY = "contrary";
+    public static final String AGE = "age";
+    public static final String POSITION = "position";
+    public static final String PLAYERS = "players";
+    public static final String PLAYER_LINE_UP_ID = "/playerLineUp?id=";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("id", id);
-        getServletContext().getRequestDispatcher("/player-jsp/createPlayer.jsp").forward(request, response);
+        int id = Integer.parseInt(request.getParameter(ID));
+        request.setAttribute(ID, id);
+        getServletContext().getRequestDispatcher(PLAYER_JSP_CREATE_PLAYER_JSP).forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         TeamService teamService = new TeamServiceImpl();
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter(ID));
         PlayerService playerService = new PlayerServiceImpl();
-        String name = request.getParameter("name");
-        String surname = request.getParameter("surname");
-        String country = request.getParameter("contrary");
-        Integer age1 = Integer.valueOf(request.getParameter("age"));
-        String position = request.getParameter("position");
+        String name = request.getParameter(NAME);
+        String surname = request.getParameter(SURNAME);
+        String country = request.getParameter(CONTRARY);
+        Integer age1 = Integer.valueOf(request.getParameter(AGE));
+        String position = request.getParameter(POSITION);
 
         Set<Player> players = teamService.showAllPlayerTeamInfo(id);
-        request.setAttribute("id", id);
-        request.setAttribute("players", players);
+        request.setAttribute(ID, id);
+        request.setAttribute(PLAYERS, players);
 
         Player player = playerService.createPlayer(name, surname, country, age1, position);
         try {
@@ -46,7 +57,7 @@ public class CreatePlayerServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        response.sendRedirect(request.getContextPath() + "/playerLineUp?id=" + id);
+        response.sendRedirect(request.getContextPath() + PLAYER_LINE_UP_ID + id);
 
     }
 }

@@ -1,8 +1,6 @@
 package servlet.teamServlet;
 
 import DTO.TeamDTO;
-import footballclub.entity.Game;
-import footballclub.entity.Player;
 import managment.implementation.TeamServiceImpl;
 import managment.interfaces.TeamService;
 
@@ -12,29 +10,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Set;
 
-@WebServlet("/selection")
+@WebServlet(SelectionTeamServlet.SELECTION)
 public class SelectionTeamServlet extends HttpServlet {
+
+    public static final String SELECTION = "/selection";
+    public static final String ID = "id";
+    public static final String TEAM_JSP_MY_TEAM_JSP = "/team-jsp/myTeam.jsp";
+    public static final String OTHER_JSP_NOTFOUND_JSP = "/other-jsp/notfound.jsp";
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         try {
             TeamService teamService = new TeamServiceImpl();
-            int id = Integer.parseInt(request.getParameter("id"));
-            request.setAttribute("id", id);
+            int id = Integer.parseInt(request.getParameter(ID));
+            request.setAttribute(ID, id);
             TeamDTO teamDTO = teamService.findTeamById(id);
-            Set<Player> players = teamService.showAllPlayerTeamInfo(id);
-            Set<Game> games = teamDTO.getGames();
-            if(teamDTO!=null) {
-                request.getServletContext().getRequestDispatcher("/team-jsp/myTeam.jsp").forward(request, response);
+//            Set<Player> players = teamService.showAllPlayerTeamInfo(id);
+//            Set<Game> games = teamDTO.getGames();
+            if (teamDTO != null) {
+                request.getServletContext().getRequestDispatcher(TEAM_JSP_MY_TEAM_JSP).forward(request, response);
+            } else {
+                request.getServletContext().getRequestDispatcher(OTHER_JSP_NOTFOUND_JSP).forward(request, response);
             }
-            else {
-                request.getServletContext().getRequestDispatcher("/other-jsp/notfound.jsp").forward(request, response);
-            }
-        }
-        catch(Exception ex) {
-            request.getServletContext().getRequestDispatcher("/other-jsp/notfound.jsp").forward(request, response);
+        } catch (Exception ex) {
+            request.getServletContext().getRequestDispatcher(OTHER_JSP_NOTFOUND_JSP).forward(request, response);
         }
     }
 }

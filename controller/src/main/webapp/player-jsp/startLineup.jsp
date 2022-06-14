@@ -12,7 +12,7 @@
 <%--        }--%>
 <%--    </style>--%>
 </head>
-<body>
+<body style="background: url(/image/ball.jpg)">
 <%@include file="/other-jsp/headerTeam.jsp" %>
 <center>
 <h2>Please select starting lineup!</h2>

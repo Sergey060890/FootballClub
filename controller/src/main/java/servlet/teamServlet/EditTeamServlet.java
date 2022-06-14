@@ -11,8 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/edit")
+@WebServlet(EditTeamServlet.EDIT)
 public class EditTeamServlet extends HttpServlet {
+
+    public static final String EDIT = "/edit";
+    public static final String ID = "id";
+    public static final String PRODUCT = "product";
+    public static final String NAME = "name";
+    public static final String CITY = "city";
+    public static final String COUNTRY = "country";
+    public static final String STADIUM = "stadium";
+    public static final String COACH = "coach";
+    public static final String TEAM_JSP_EDIT_TEAM_JSP = "/team-jsp/editTeam.jsp";
+    public static final String OTHER_JSP_NOTFOUND_JSP = "/other-jsp/notfound.jsp";
+    public static final String PLAYER_ID = "/player?id=";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -20,30 +32,31 @@ public class EditTeamServlet extends HttpServlet {
         try {
 
             TeamService teamService = new TeamServiceImpl();
-            int id = Integer.parseInt(request.getParameter("id"));
+            int id = Integer.parseInt(request.getParameter(ID));
             TeamDTO teamDTO = teamService.findTeamById(id);
-            request.setAttribute("id", id);
-            if(teamDTO!=null) {
+            request.setAttribute(ID, id);
+            if (teamDTO != null) {
                 String team_name = teamDTO.getTeam_name();
                 String teamCity = teamDTO.getCity();
                 String teamCountry = teamDTO.getCountry();
                 String teamStadium = teamDTO.getStadium();
                 String teamCoach = teamDTO.getCoach();
-                request.setAttribute("product", teamDTO);
-                request.setAttribute("name", team_name);
-                request.setAttribute("city", teamCity);
-                request.setAttribute("country", teamCountry);
-                request.setAttribute("stadium", teamStadium);
-                request.setAttribute("coach", teamCoach);
+                request.setAttribute(PRODUCT, teamDTO);
+                request.setAttribute(NAME, team_name);
+                request.setAttribute(CITY, teamCity);
+                request.setAttribute(COUNTRY, teamCountry);
+                request.setAttribute(STADIUM, teamStadium);
+                request.setAttribute(COACH, teamCoach);
 
-                request.getServletContext().getRequestDispatcher("/team-jsp/editTeam.jsp").forward(request, response);
+                request.getServletContext()
+                        .getRequestDispatcher(TEAM_JSP_EDIT_TEAM_JSP).forward(request, response);
+            } else {
+                request.getServletContext()
+                        .getRequestDispatcher(OTHER_JSP_NOTFOUND_JSP).forward(request, response);
             }
-            else {
-                request.getServletContext().getRequestDispatcher("/other-jsp/notfound.jsp").forward(request, response);
-            }
-        }
-        catch(Exception ex) {
-            request.getServletContext().getRequestDispatcher("/other-jsp/notfound.jsp").forward(request, response);
+        } catch (Exception ex) {
+            request.getServletContext()
+                    .getRequestDispatcher(OTHER_JSP_NOTFOUND_JSP).forward(request, response);
         }
     }
 
@@ -53,18 +66,19 @@ public class EditTeamServlet extends HttpServlet {
         try {
 
             TeamService teamService = new TeamServiceImpl();
-            int id = Integer.parseInt(request.getParameter("id"));
-            String name = request.getParameter("name");
-            String city = request.getParameter("city");
-            String country = request.getParameter("country");
-            String stadium = request.getParameter("stadium");
-            String coach = request.getParameter("coach");
+            int id = Integer.parseInt(request.getParameter(ID));
+            String name = request.getParameter(NAME);
+            String city = request.getParameter(CITY);
+            String country = request.getParameter(COUNTRY);
+            String stadium = request.getParameter(STADIUM);
+            String coach = request.getParameter(COACH);
 
             teamService.updateTeam(id, name, city, country, stadium, coach);
-            response.sendRedirect(request.getContextPath() + "/player?id=" + id);
+            response.sendRedirect(request.getContextPath() + PLAYER_ID + id);
         } catch (Exception ex) {
 
-            request.getServletContext().getRequestDispatcher("/other-jsp/notfound.jsp").forward(request, response);
+            request.getServletContext()
+                    .getRequestDispatcher(OTHER_JSP_NOTFOUND_JSP).forward(request, response);
         }
     }
 }

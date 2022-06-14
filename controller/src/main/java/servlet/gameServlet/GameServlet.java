@@ -13,18 +13,24 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 
-@WebServlet("/game")
+@WebServlet(GameServlet.GAME)
 public class GameServlet extends HttpServlet {
+
+    public static final String GAME = "/game";
+    public static final String ID = "id";
+    public static final String GAMES = "games";
+    public static final String GAME_JSP_GAME_JSP = "/game-jsp/game.jsp";
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         GameService gameService = new GameServiceImpl();
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter(ID));
         Set<Game> gameSet =
                 gameService.showAllGameTeamInfo(id);
-        Map<Integer,String> games =
+        Map<Integer, String> games =
                 gameService.showAllOpponentTeamInfo(gameSet);
-        request.setAttribute("id", id);
-        request.setAttribute("games", games);
-        request.getServletContext().getRequestDispatcher("/game-jsp/game.jsp").forward(request, response);
+        request.setAttribute(ID, id);
+        request.setAttribute(GAMES, games);
+        request.getServletContext().getRequestDispatcher(GAME_JSP_GAME_JSP).forward(request, response);
     }
 }

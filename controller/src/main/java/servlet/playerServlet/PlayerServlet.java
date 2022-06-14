@@ -12,15 +12,24 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/player")
+@WebServlet(PlayerServlet.PLAYER)
 public class PlayerServlet extends HttpServlet {
+
+    public static final String PLAYER = "/player";
+    public static final String ID = "id";
+    public static final String NAME = "name";
+    public static final String CITY = "city";
+    public static final String COUNTRY = "country";
+    public static final String STADIUM = "stadium";
+    public static final String COACH = "coach";
+    public static final String TEAM_JSP_MY_TEAM_JSP = "/team-jsp/myTeam.jsp";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         TeamService teamService = new TeamServiceImpl();
-        int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("id", id);
+        int id = Integer.parseInt(request.getParameter(ID));
+        request.setAttribute(ID, id);
         try {
             TeamDTO teamDTO = teamService.findTeamById(id);
             String team_name = teamDTO.getTeam_name();
@@ -31,13 +40,13 @@ public class PlayerServlet extends HttpServlet {
 
 //            request.setAttribute("players", players);
 //            request.setAttribute("games", games);
-            request.setAttribute("name", team_name);
-            request.setAttribute("city", teamCity);
-            request.setAttribute("country", teamCountry);
-            request.setAttribute("stadium", teamStadium);
-            request.setAttribute("coach", teamCoach);
+            request.setAttribute(NAME, team_name);
+            request.setAttribute(CITY, teamCity);
+            request.setAttribute(COUNTRY, teamCountry);
+            request.setAttribute(STADIUM, teamStadium);
+            request.setAttribute(COACH, teamCoach);
 
-            request.getServletContext().getRequestDispatcher("/team-jsp/myTeam.jsp").forward(request, response);
+            request.getServletContext().getRequestDispatcher(TEAM_JSP_MY_TEAM_JSP).forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
         }

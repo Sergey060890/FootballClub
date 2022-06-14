@@ -40,7 +40,7 @@
 <%--</script>--%>
 <head>
 
-    <title>Главная Страница</title>
+    <title>Home Page</title>
 </head>
 <body style="background: url(image/pexelsphoto1594932.jpeg)">
 
