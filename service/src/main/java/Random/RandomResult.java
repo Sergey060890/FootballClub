@@ -32,7 +32,7 @@ public class RandomResult {
     }
 
     public int randomYellowCardScore() {
-        int[] myIntYC = new int[]{INT_0, INT_0, INT_1, INT_1, INT_1,
+        int[] myIntYC = new int[]{INT_0, INT_1, INT_1, INT_1,
                 INT_2, INT_2, INT_2, INT_2, INT_2, INT_2, INT_3, INT_3};
         Random random = new Random();
         int n = myIntYC[random.nextInt(myIntYC.length)];

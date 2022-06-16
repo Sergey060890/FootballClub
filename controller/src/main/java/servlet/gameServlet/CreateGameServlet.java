@@ -1,5 +1,6 @@
 package servlet.gameServlet;
 
+import footballclub.entity.Game;
 import footballclub.entity.Team;
 import managment.implementation.GameServiceImpl;
 import managment.implementation.TeamServiceImpl;
@@ -33,15 +34,13 @@ public class CreateGameServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-
         try {
             TeamService teamService = new TeamServiceImpl();
             GameService gameService = new GameServiceImpl();
             int id = Integer.parseInt(request.getParameter(ID));
-            Team team =   teamService.findTeamId(id);
+            Team team = teamService.findTeamId(id);
             String opponent = request.getParameter(OPPONENT);
-            gameService.createGame(team,opponent);
+            Game game = gameService.createGame(team, opponent);
             response.sendRedirect(request.getContextPath() + GAME_ID + id);
         } catch (Exception ex) {
             request.getServletContext().getRequestDispatcher(OTHER_JSP_NOTFOUND_JSP).forward(request, response);

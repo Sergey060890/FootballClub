@@ -74,6 +74,7 @@ public class StartLineUpServlet extends HttpServlet {
             request.setAttribute(INFO, info);
             request.getServletContext()
                     .getRequestDispatcher(PLAYER_JSP_GO_PLAYER_JSP).forward(request, response);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -29,4 +29,25 @@ public class PlayerLineUpServlet extends HttpServlet {
         request.setAttribute(PLAYERS, players);
         request.getServletContext().getRequestDispatcher(PLAYER_JSP_PLAYER_JSP).forward(request, response);
     }
+
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//
+//        try {
+//
+//            TeamService teamService = new TeamServiceImpl();
+//            int id = Integer.parseInt(request.getParameter(ID));
+//            String name = request.getParameter("search");
+//            Set<Player> players = teamService.showAllPlayerTeamInfo(id);
+//            for (Player p: players
+//                 ) {
+//                if (p.getPlayer_surname().equals(name)){
+//                    Player player = p;
+//                    request.setAttribute("player", player);
+//                }
+//            }
+//        } catch (Exception ex) {
+//            getServletContext().getRequestDispatcher("/player-jsp/navbarplayer.jsp").forward(request, response);
+//        }
+//    }
 }

@@ -13,7 +13,7 @@
 <%@ page import="footballclub.entity.Game" %>
 <%@ page import="servlet.teamServlet.TeamServlet" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page isELIgnored = "false" %>
+<%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -36,12 +36,6 @@
         <jsp:useBean id="id" scope="request" type="java.lang.Integer"/>
         <jsp:useBean id="players" scope="request" type="java.util.Set"/>
         <c:forEach var="player" items="${players}">
-
-            <%--        <jsp:useBean id="teams" scope="request" type="java.util.Set"/>--%>
-            <%--        <c:forEach var="team" items="${teams}">--%>
-
-            <%--        <jsp:useBean id="games" scope="request" type="java.util.Set"/>--%>
-            <%--        <c:forEach var="game" items="${games}">--%>
 
             <tr>
                 <td>

@@ -27,11 +27,9 @@ public class DeleteGameServlet extends HttpServlet {
             int id = Integer.parseInt(request.getParameter(ID));
             Game game = gameService.findGameById(id);
             int idTeam = game.getTeamGame().getTeam_id();
-
             gameService.deleteGame(id);
             response.sendRedirect(request.getContextPath() + GAME_ID + idTeam);
-        }
-        catch(Exception ex) {
+        } catch (Exception ex) {
             getServletContext().getRequestDispatcher(OTHER_JSP_NOTFOUND_JSP).forward(request, response);
         }
     }

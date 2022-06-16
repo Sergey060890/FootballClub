@@ -23,7 +23,7 @@ public class MatchServlet extends HttpServlet {
             throws ServletException, IOException {
 
         GameService gameService = new GameServiceImpl();
-        int id = Integer.parseInt(request.getParameter(ID));
+        int id = Integer.parseInt(request.getParameter(ID));//id game
         request.setAttribute(ID, id);
 
         try {
@@ -34,8 +34,7 @@ public class MatchServlet extends HttpServlet {
             } else {
                 request.getServletContext().getRequestDispatcher(OTHER_JSP_MATCH_JSP).forward(request, response);
             }
-        }
-        catch(Exception ex) {
+        } catch (Exception ex) {
             request.getServletContext().getRequestDispatcher(OTHER_JSP_MATCH_JSP).forward(request, response);
         }
     }

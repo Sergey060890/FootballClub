@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
 import java.util.Set;
 
 @WebServlet(GameServlet.GAME)
@@ -24,13 +23,11 @@ public class GameServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         GameService gameService = new GameServiceImpl();
-        int id = Integer.parseInt(request.getParameter(ID));
+        int id = Integer.parseInt(request.getParameter(ID));// id команды
         Set<Game> gameSet =
                 gameService.showAllGameTeamInfo(id);
-        Map<Integer, String> games =
-                gameService.showAllOpponentTeamInfo(gameSet);
         request.setAttribute(ID, id);
-        request.setAttribute(GAMES, games);
+        request.setAttribute(GAMES, gameSet);
         request.getServletContext().getRequestDispatcher(GAME_JSP_GAME_JSP).forward(request, response);
     }
 }

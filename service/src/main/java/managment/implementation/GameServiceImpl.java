@@ -23,12 +23,12 @@ import managment.interfaces.TeamService;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class GameServiceImpl implements GameService {
@@ -53,6 +53,7 @@ public class GameServiceImpl implements GameService {
             new EnityDaoImplSubstitution();
     RandomResult random = new RandomResult();
     TeamService teamService = new TeamServiceImpl();
+
 
 
     @Override
@@ -126,14 +127,30 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public Set<Game> showAllGameTeamInfo(Integer id) {
-        Set<Game> players = new HashSet<>();
+        List<GoalScore> goalScores = enityDaoImplGoalScore.findAll();
+        Set<Game> games = new HashSet<>();
+//        Set<Game> gamesFinal = new HashSet<>();
         for (Game game : enityDaoImplGame.findAll()
         ) {
             if (game.getTeamGame().getTeam_id() == id) {
-                players.add(game);
+                games.add(game);
             }
         }
-        return players;
+//
+//        for (Game game: games
+//             ) {
+//            for (GoalScore gs: goalScores
+//                 ) {
+//                if (gs.getGame().getGame_id().equals(game.getGame_id())){
+//                    continue;
+//                }else {
+//                    gamesFinal.add(game);
+//                }
+//            }
+//        }
+
+
+        return games;
     }
 
     @Override
@@ -289,7 +306,7 @@ public class GameServiceImpl implements GameService {
         List<Substitution> subsAdd = new ArrayList<>();
 
 
-        List<Integer> timeMoment = new ArrayList<>();
+        Set<Integer> timeMoment = new HashSet<>();
         for (GoalScore goals : goal
         ) {
             if (goals.getGame().getGame_id() == game.getGame_id()) {
@@ -329,14 +346,17 @@ public class GameServiceImpl implements GameService {
                 subsAdd.add(subst);
             }
         }
-        Collections.sort(timeMoment);
+
+
+        final TreeSet<Integer> ts = new TreeSet(timeMoment);
+        ts.comparator();
 
         int countGoal = 0;
         int countConc = 0;
 
         List<String> listInfo = new ArrayList<>();
 
-        for (int counter : timeMoment) {
+        for (int counter : ts) {
             for (GoalScore goalScore : goalAdd
             ) {
                 if (goalScore.getGoal_time() == counter) {
@@ -364,14 +384,14 @@ public class GameServiceImpl implements GameService {
                 }
             }
 
-            for (RedCard redCard : redAdd
-            ) {
-                if (redCard.getCard_time() == counter) {
-                    listInfo.add(redCard.getCard_time() + RED_CARD
-                            + redCard.getPlayer().getPlayer_surname());
-                    start.remove(redCard.getPlayer());
-                }
-            }
+//            for (RedCard redCard : redAdd
+//            ) {
+//                if (redCard.getCard_time() == counter) {
+//                    listInfo.add(redCard.getCard_time() + RED_CARD
+//                            + redCard.getPlayer().getPlayer_surname());
+//                    start.remove(redCard.getPlayer());
+//                }
+//            }
 
 //            for (Substitution substitution : subsAdd
 //            ) {

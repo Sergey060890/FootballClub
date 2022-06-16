@@ -159,6 +159,7 @@
 
     </changeSet>
 
+
 <!--    <changeSet id="10" author="Sergey060890">-->
 <!--        <comment>create table team_player</comment>-->
 <!--        <sql>-->

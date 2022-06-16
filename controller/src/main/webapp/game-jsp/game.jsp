@@ -33,25 +33,25 @@
         </tr>
         <%--        <jsp:useBean id="gameplay" scope="request" type="footballclub.entity.Game"/>--%>
         <jsp:useBean id="id" scope="request" type="java.lang.Integer"/>
-        <jsp:useBean id="games" scope="request" type="java.util.Map"/>
+        <jsp:useBean id="games" scope="request" type="java.util.Set"/>
         <c:forEach var="game" items="${games}">
 
             <tr>
 
                 <td>
-                        ${game.getValue()}
+                        ${game.opponent_name}
                 </td>
 
                 <td>
-                    <a class="gradient-button" href='<c:url value="match?id=${game.getKey()}" />'>Play a match</a>
+                    <a class="gradient-button" href='<c:url value="match?id=${game.game_id}" />'>Play a match</a>
                 </td>
 
                 <td>
-                    <a class="gradient-button" href='<c:url value="editGame?id=${game.getKey()}" />'>Edit game</a>
+                    <a class="gradient-button" href='<c:url value="editGame?id=${game.game_id}" />'>Edit game</a>
                 </td>
 
                 <td>
-                    <a class="gradient-button" href='<c:url value="deleteGame?id=${game.getKey()}" />'>Refuse to
+                    <a class="gradient-button" href='<c:url value="deleteGame?id=${game.game_id}" />'>Refuse to
                         play</a>
                 </td>
 

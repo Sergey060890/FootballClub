@@ -25,28 +25,28 @@ public class EditGameServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         GameService gameService = new GameServiceImpl();
         int id = Integer.parseInt(request.getParameter(ID));
         request.setAttribute(ID, id);
-
         try {
             Game game = gameService.findGameById(id);
             if (game != null) {
                 request.setAttribute(GAME, game);
                 request.setAttribute(OPPONENT, game.getOpponent_name());
-                request.getServletContext().getRequestDispatcher(GAME_JSP_EDIT_GAME_JSP).forward(request, response);
+                request.getServletContext()
+                        .getRequestDispatcher(GAME_JSP_EDIT_GAME_JSP).forward(request, response);
             } else {
-                request.getServletContext().getRequestDispatcher(OTHER_JSP_NOTFOUND_JSP).forward(request, response);
+                request.getServletContext()
+                        .getRequestDispatcher(OTHER_JSP_NOTFOUND_JSP).forward(request, response);
             }
         } catch (Exception ex) {
-            request.getServletContext().getRequestDispatcher(OTHER_JSP_NOTFOUND_JSP).forward(request, response);
+            request.getServletContext()
+                    .getRequestDispatcher(OTHER_JSP_NOTFOUND_JSP).forward(request, response);
         }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         try {
             GameService gameService = new GameServiceImpl();
             int id = Integer.parseInt(request.getParameter(ID));

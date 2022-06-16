@@ -38,7 +38,7 @@
         <c:forEach var="team" items="${teams}">
             <tr>
                 <td>${team.team_name}</td>
-                <td>${team.city}</td>
+                <center><td>${team.city}</td> </center>
                 <center>
                     <td>
                         <a class="gradient-button" href='<c:url value="player?id=${team.team_id}" />'>SELECT</a>
