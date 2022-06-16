@@ -57,7 +57,7 @@
 
     </table>
 
-    <a class="gradient-button1" href='<c:url value="game?id=${game.getTeamGame().getTeam_id()}" />'>EXIT</a>
+    <a class="gradient-button1" href="TeamServlet" />EXIT</a>
 </center>
 </body>
 </html>

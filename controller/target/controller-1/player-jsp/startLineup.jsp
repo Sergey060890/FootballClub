@@ -15,7 +15,7 @@
 <body style="background: url(/image/ball.jpg)">
 <%@include file="/other-jsp/headerTeam.jsp" %>
 <center>
-<h2>Please select starting lineup!</h2>
+<h2>Please select starting lineup! (11 players)</h2>
 </center>
 <jsp:useBean id="id" scope="request" type="java.lang.Integer"/>
 <jsp:useBean id="game" scope="request" type="footballclub.entity.Game"/>

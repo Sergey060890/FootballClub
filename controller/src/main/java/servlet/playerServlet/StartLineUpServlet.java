@@ -29,6 +29,8 @@ public class StartLineUpServlet extends HttpServlet {
     public static final String PLAYER = "player";
     public static final String INFO = "info";
     public static final String PLAYER_JSP_GO_PLAYER_JSP = "/player-jsp/goPlayer.jsp";
+    public static final int INT = 11;
+    public static final String START_LINEUP_ID = "/startLineup?id=";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -62,18 +64,33 @@ public class StartLineUpServlet extends HttpServlet {
             int id = Integer.parseInt(request.getParameter(ID));//ID игры
             Game game = gameService.findGameById(id);
             String[] players = request.getParameterValues(PLAYER);
-            Set<Player> playersGo = gameService.
-                    startGamePlayer(game.getTeamGame().getTeam_id(), players);
-            Set<Player> playersNoGo = gameService.
-                    noStartGamePlayer(game.getTeamGame().getTeam_id(), players);
-            List<String> info = gameService.
-                    showGameAndStats(gameService, game, playersGo, playersNoGo);
             request.setAttribute(ID, id);
-            request.setAttribute(PLAYERS, playersGo);
-            request.setAttribute(GAME, game);
-            request.setAttribute(INFO, info);
-            request.getServletContext()
-                    .getRequestDispatcher(PLAYER_JSP_GO_PLAYER_JSP).forward(request, response);
+            if (players.length < INT) {
+                response.sendRedirect(request.getContextPath() + START_LINEUP_ID + id);
+            } else {
+                Set<Player> playersGo = gameService.
+                        startGamePlayer(game.getTeamGame().getTeam_id(), players);
+                Set<Player> playersNoGo = gameService.
+                        noStartGamePlayer(game.getTeamGame().getTeam_id(), players);
+                List<String> info = gameService.
+                        showGameAndStats(gameService, game, playersGo, playersNoGo);
+                request.setAttribute(PLAYERS, playersGo);
+                request.setAttribute(GAME, game);
+                request.setAttribute(INFO, info);
+                request.getServletContext()
+                        .getRequestDispatcher(PLAYER_JSP_GO_PLAYER_JSP).forward(request, response);
+            }
+//            Set<Player> playersGo = gameService.
+//                    startGamePlayer(game.getTeamGame().getTeam_id(), players);
+//            Set<Player> playersNoGo = gameService.
+//                    noStartGamePlayer(game.getTeamGame().getTeam_id(), players);
+//            List<String> info = gameService.
+//                    showGameAndStats(gameService, game, playersGo, playersNoGo);
+//            request.setAttribute(PLAYERS, playersGo);
+//            request.setAttribute(GAME, game);
+//            request.setAttribute(INFO, info);
+//            request.getServletContext()
+//                    .getRequestDispatcher(PLAYER_JSP_GO_PLAYER_JSP).forward(request, response);
 
         } catch (SQLException e) {
             e.printStackTrace();
