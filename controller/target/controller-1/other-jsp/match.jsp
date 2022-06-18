@@ -50,9 +50,9 @@
     <link rel="stylesheet" type="text/css" href="#" media="#"/>
     <script type="text/javascript">
         function randomImg() {
-            var imgAr = ['<img src="other-jsp/image/rain_weather_icon_151998.png" alt="Rain" />',
-                '<img src="other-jsp/image/sunny_sunshine_weather_2778.png" alt="Sunny" />',
-                '<img src="other-jsp/image/sunny_weather_icon_150663.png" alt="Cloudy" />'];
+            var imgAr = ['<img src="images/rain_weather_icon_151998.png" alt="Rain" />',
+                '<img src="images/sunny_sunshine_weather_2778.png" alt="Sunny" />',
+                '<img src="images/sunny_weather_icon_150663.png" alt="Cloudy" />'];
             var rnd = Math.floor(Math.random() * imgAr.length);
             var rndImg = imgAr[rnd];
             var imgTag = document.getElementById('img');

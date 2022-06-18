@@ -65,7 +65,7 @@ public class StartLineUpServlet extends HttpServlet {
             Game game = gameService.findGameById(id);
             String[] players = request.getParameterValues(PLAYER);
             request.setAttribute(ID, id);
-            if (players.length < INT) {
+            if (players.length < INT || players.length > INT) {
                 response.sendRedirect(request.getContextPath() + START_LINEUP_ID + id);
             } else {
                 Set<Player> playersGo = gameService.

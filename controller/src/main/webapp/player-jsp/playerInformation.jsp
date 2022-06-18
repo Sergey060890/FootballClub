@@ -18,7 +18,7 @@
 <html>
 <head>
 
-<body>
+<body style="background: url(images/balls.jpeg)">
 <%@include file="/other-jsp/headerTeam.jsp" %>
 <center>
     <table border="3" width="50%">
@@ -60,9 +60,11 @@
         </tr>
 
     </table>
+
     <a class="gradient-button1" href="TeamServlet">GAMES</a>
     <a class="gradient-button1" href="TeamServlet">STATISTICS</a>
     <a class="gradient-button1" href="playerLineUp?id=${player.teamPlayer.team_id}">BACK</a>
+    <img src="images/player.png" align="left" width="700" height="500" />
 </center>
 </body>
 </html>

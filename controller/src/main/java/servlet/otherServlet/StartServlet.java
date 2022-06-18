@@ -15,7 +15,7 @@ public class StartServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher(OTHER_JSP_INDEX_JSP).forward(req, resp);
+        req.getServletContext().getRequestDispatcher(OTHER_JSP_INDEX_JSP).forward(req, resp);
     }
 }
 

@@ -13,6 +13,7 @@
 <link href="css/style.css" rel="stylesheet">
 <link href="css/table.css" rel="stylesheet">
 <link href="css/center.css" rel="stylesheet">
+<link href="css/neon.сss" rel="stylesheet">
 <style>
     a:link {
         text-decoration: none;
@@ -24,5 +25,6 @@
 
     <a href="https://www.euro-football.ru/">Football news</a>
 </div>
+
 </body>
 </html>
