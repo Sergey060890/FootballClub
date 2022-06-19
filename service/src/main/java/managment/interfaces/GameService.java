@@ -61,7 +61,7 @@ public interface GameService {
     /**
      * Print GameStats
      */
-    public List<String> showGameAndStats(GameService service, Game game, Set<Player> start, Set<Player> noStart);
+    List<String> showGameAndStats(GameService service, Game game, Set<Player> start, Set<Player> noStart);
 
     List<GameDTO> findAll();
 
@@ -83,4 +83,11 @@ public interface GameService {
     Set<Player> noStartGamePlayer(Integer id, String[] players) throws SQLException;
 
     Map<Integer, String> opponentRemoveTeam(GameService service, Game game, Set<Game> gameSet);
+
+    Integer goalkeeperСheck(Set<Player> playersGo) throws SQLException;
+
+    Integer countAttendance();
+
+    String refereeGame();
+
 }

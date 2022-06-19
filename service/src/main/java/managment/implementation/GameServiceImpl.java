@@ -38,6 +38,7 @@ public class GameServiceImpl implements GameService {
     public static final String GOAL_MISSED = " Goal missed! ";
     public static final String GOOOOAAAAL = "' GOOOOAAAAL! ";
     public static final String STRING1 = " ";
+    public static final String GK = "GK";
 
     EnityDaoImplGame enityDaoImplGame =
             new EnityDaoImplGame();
@@ -178,6 +179,18 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    public Integer goalkeeperСheck(Set<Player> playersGo) throws SQLException {
+        int count = 0;
+        for (Player p : playersGo
+        ) {
+            if (p.getPosition().equals(GK)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @Override
     public Set<Player> noStartGamePlayer(Integer id, String[] players) throws SQLException {
         Set<Player> playerSet = teamService.showAllPlayerTeamInfo(id);
         Set<String> mySet = new HashSet<>(Arrays.asList(players));
@@ -200,7 +213,7 @@ public class GameServiceImpl implements GameService {
     public GoalScore createGoalScore(Game game, Set<Player> players) {
         GoalScore goal = GoalScore.builder()
                 .game(game)
-                .player(random.create(players))
+                .player(random.createNoGk(players))
                 .goal_time(random.timeRandomGoal())
                 .build();
         enityDaoImplGoalScore.create(goal);
@@ -208,10 +221,22 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    public Integer countAttendance() {
+        Integer goal = random.attendance();
+        return goal;
+    }
+
+    @Override
+    public String refereeGame() {
+        String referee = random.referee();
+        return referee;
+    }
+
+    @Override
     public GoalConceded createGoalConceded(Game game, Set<Player> players) {
         GoalConceded goalConc = GoalConceded.builder()
                 .game(game)
-                .player(random.create(players))
+                .player(random.createGoalConcPlayer(players))
                 .conceded_time(random.timeRandomGoal())
                 .build();
         enityDaoImplGoalConceded.create(goalConc);

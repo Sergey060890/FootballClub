@@ -1,8 +1,8 @@
 package servlet.gameServlet;
 
-import footballclub.entity.Game;
-import managment.implementation.GameServiceImpl;
-import managment.interfaces.GameService;
+import footballclub.entity.Result;
+import managment.implementation.ResultServiceImpl;
+import managment.interfaces.ResultService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,10 +22,11 @@ public class GameServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        GameService gameService = new GameServiceImpl();
+        ResultService resultService = new ResultServiceImpl();
+//        GameService gameService = new GameServiceImpl();
         int id = Integer.parseInt(request.getParameter(ID));// id команды
-        Set<Game> gameSet =
-                gameService.showAllGameTeamInfo(id);
+        Set<Result> gameSet =
+                resultService.showAllResultTeamInfo(id);
         request.setAttribute(ID, id);
         request.setAttribute(GAMES, gameSet);
         request.getServletContext().getRequestDispatcher(GAME_JSP_GAME_JSP).forward(request, response);

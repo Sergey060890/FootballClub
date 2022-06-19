@@ -10,7 +10,7 @@
 <center>
     <h3>Game editing</h3>
 </center>
-<jsp:useBean id="game" scope="request" type="footballclub.entity.Game"/>
+<jsp:useBean id="game" scope="request" type="footballclub.entity.Result"/>
 <form method="post">
     <center>
         <input type="hidden" value="${id}" name="id"/>

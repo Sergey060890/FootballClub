@@ -8,6 +8,7 @@
         <entry key="file://$PROJECT_DIR$/controller/src/main/webapp/other-jsp/index.jsp" value="file://$PROJECT_DIR$/controller/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/controller/src/main/webapp/other-jsp/match.jsp" value="file://$PROJECT_DIR$/controller/src/main/webapp/other-jsp" />
         <entry key="file://$PROJECT_DIR$/controller/src/main/webapp/player-jsp/goPlayer.jsp" value="file://$PROJECT_DIR$/controller/src/main/webapp/player-jsp" />
+        <entry key="file://$PROJECT_DIR$/controller/src/main/webapp/player-jsp/startLineup.jsp" value="file://$PROJECT_DIR$/controller/src/main/webapp/player-jsp" />
         <entry key="file://$PROJECT_DIR$/controller/src/main/webapp/team-jsp/team.jsp" value="file://$PROJECT_DIR$/controller/src/main/webapp/team-jsp" />
         <entry key="file://$PROJECT_DIR$/controller/src/main/webapp/team.jsp" value="file://$PROJECT_DIR$/controller/src/main/webapp" />
         <entry key="mock:///match.jsp" value="file://$PROJECT_DIR$/controller/src/main/webapp" />

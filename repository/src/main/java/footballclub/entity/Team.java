@@ -53,15 +53,20 @@ public class Team {
     @Column(name = "coach")
     private String coach;
 
-    @OneToMany(mappedBy = "teamPlayer", fetch = FetchType.EAGER)//Eager?
+    @OneToMany(mappedBy = "teamPlayer", fetch = FetchType.EAGER)//Eager
     @ToString.Exclude
     @Builder.Default
     private Set<Player> players = new HashSet<>();
 
-    @OneToMany(mappedBy = "teamGame", fetch = FetchType.EAGER)//Eager?
+    @OneToMany(mappedBy = "teamGame", fetch = FetchType.EAGER)
     @ToString.Exclude
     @Builder.Default
     private Set<Game> games = new HashSet<>();
+
+    @OneToMany(mappedBy = "teamGame", fetch = FetchType.EAGER)
+    @ToString.Exclude
+    @Builder.Default
+    private Set<Result> results = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {

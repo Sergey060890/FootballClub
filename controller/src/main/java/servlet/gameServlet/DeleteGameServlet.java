@@ -1,8 +1,8 @@
 package servlet.gameServlet;
 
-import footballclub.entity.Game;
-import managment.implementation.GameServiceImpl;
-import managment.interfaces.GameService;
+import footballclub.entity.Result;
+import managment.implementation.ResultServiceImpl;
+import managment.interfaces.ResultService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,11 +23,13 @@ public class DeleteGameServlet extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-            GameService gameService = new GameServiceImpl();
+//            GameService gameService = new GameServiceImpl();
+            ResultService resultService = new ResultServiceImpl();
             int id = Integer.parseInt(request.getParameter(ID));
-            Game game = gameService.findGameById(id);
-            int idTeam = game.getTeamGame().getTeam_id();
-            gameService.deleteGame(id);
+//            Game game = gameService.findGameById(id);
+            Result result = resultService.findResultById(id);
+            int idTeam = result.getTeamGame().getTeam_id();
+            resultService.deleteResult(id);
             response.sendRedirect(request.getContextPath() + GAME_ID + idTeam);
         } catch (Exception ex) {
             getServletContext().getRequestDispatcher(OTHER_JSP_NOTFOUND_JSP).forward(request, response);

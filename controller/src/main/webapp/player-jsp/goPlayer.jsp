@@ -57,7 +57,7 @@
 
     </table>
 
-    <a class="gradient-button1" href="TeamServlet" />EXIT</a>
+    <a class="gradient-button1" href="game?id=${game.teamGame.team_id}" />EXIT</a>
 </center>
 </body>
 </html>

@@ -43,15 +43,15 @@
                 </td>
 
                 <td>
-                    <a class="gradient-button" href='<c:url value="match?id=${game.game_id}" />'>Play a match</a>
+                    <a class="gradient-button" href='<c:url value="match?id=${game.id}" />'>Play a match</a>
                 </td>
 
                 <td>
-                    <a class="gradient-button" href='<c:url value="editGame?id=${game.game_id}" />'>Edit game</a>
+                    <a class="gradient-button" href='<c:url value="editGame?id=${game.id}" />'>Edit game</a>
                 </td>
 
                 <td>
-                    <a class="gradient-button" href='<c:url value="deleteGame?id=${game.game_id}" />'>Refuse to
+                    <a class="gradient-button" href='<c:url value="deleteGame?id=${game.id}" />'>Refuse to
                         play</a>
                 </td>
 

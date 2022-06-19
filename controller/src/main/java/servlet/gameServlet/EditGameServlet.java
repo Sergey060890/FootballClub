@@ -1,8 +1,10 @@
 package servlet.gameServlet;
 
-import footballclub.entity.Game;
+import footballclub.entity.Result;
 import managment.implementation.GameServiceImpl;
+import managment.implementation.ResultServiceImpl;
 import managment.interfaces.GameService;
+import managment.interfaces.ResultService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,13 +28,14 @@ public class EditGameServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         GameService gameService = new GameServiceImpl();
+        ResultService resultService = new ResultServiceImpl();
         int id = Integer.parseInt(request.getParameter(ID));
         request.setAttribute(ID, id);
         try {
-            Game game = gameService.findGameById(id);
-            if (game != null) {
-                request.setAttribute(GAME, game);
-                request.setAttribute(OPPONENT, game.getOpponent_name());
+            Result result = resultService.findResultById(id);
+            if (result != null) {
+                request.setAttribute(GAME, result);
+                request.setAttribute(OPPONENT, result.getOpponent_name());
                 request.getServletContext()
                         .getRequestDispatcher(GAME_JSP_EDIT_GAME_JSP).forward(request, response);
             } else {
@@ -48,12 +51,13 @@ public class EditGameServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            GameService gameService = new GameServiceImpl();
+//            GameService gameService = new GameServiceImpl();
+            ResultService resultService = new ResultServiceImpl();
             int id = Integer.parseInt(request.getParameter(ID));
-            Game game = gameService.findGameById(id);
+            Result result = resultService.findResultById(id);
             String opponent = request.getParameter(OPPONENT);
-            int idTeam = game.getTeamGame().getTeam_id();
-            gameService.updateGame(id, opponent);
+            int idTeam = result.getTeamGame().getTeam_id();
+            resultService.updateResult(id, opponent);
             response.sendRedirect(request.getContextPath() + GAME_ID + idTeam);
         } catch (Exception ex) {
             request.getServletContext().getRequestDispatcher(OTHER_JSP_NOTFOUND_JSP).forward(request, response);

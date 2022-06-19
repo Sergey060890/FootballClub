@@ -1,10 +1,12 @@
 package servlet.gameServlet;
 
-import footballclub.entity.Game;
+import footballclub.entity.Result;
 import footballclub.entity.Team;
 import managment.implementation.GameServiceImpl;
+import managment.implementation.ResultServiceImpl;
 import managment.implementation.TeamServiceImpl;
 import managment.interfaces.GameService;
+import managment.interfaces.ResultService;
 import managment.interfaces.TeamService;
 
 import javax.servlet.ServletException;
@@ -37,10 +39,13 @@ public class CreateGameServlet extends HttpServlet {
         try {
             TeamService teamService = new TeamServiceImpl();
             GameService gameService = new GameServiceImpl();
+            ResultService resultService = new ResultServiceImpl();
             int id = Integer.parseInt(request.getParameter(ID));
             Team team = teamService.findTeamId(id);
             String opponent = request.getParameter(OPPONENT);
-            Game game = gameService.createGame(team, opponent);
+            Result result = resultService.createResult(team,opponent);
+//            Game game = gameService.createGame(team, opponent);
+//            response.sendRedirect(request.getContextPath() + GAME_ID + id);
             response.sendRedirect(request.getContextPath() + GAME_ID + id);
         } catch (Exception ex) {
             request.getServletContext().getRequestDispatcher(OTHER_JSP_NOTFOUND_JSP).forward(request, response);
