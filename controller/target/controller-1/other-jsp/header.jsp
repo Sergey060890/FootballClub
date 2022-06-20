@@ -23,7 +23,7 @@
     <a class="active" href="StartServlet">Main page</a>
     <a href='<c:url value="game?id=${id}" />'>Play games</a>
     <a href='<c:url value="playerLineUp?id=${id}" />'>Team line-up</a>
-    <a href="TeamServlet">Statistics</a>
+    <a href='<c:url value="statsTeam?id=${id}" />'>Team statistics</a>
 </div>
 </body>
 </html>

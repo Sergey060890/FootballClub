@@ -128,29 +128,13 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public Set<Game> showAllGameTeamInfo(Integer id) {
-        List<GoalScore> goalScores = enityDaoImplGoalScore.findAll();
         Set<Game> games = new HashSet<>();
-//        Set<Game> gamesFinal = new HashSet<>();
         for (Game game : enityDaoImplGame.findAll()
         ) {
             if (game.getTeamGame().getTeam_id() == id) {
                 games.add(game);
             }
         }
-//
-//        for (Game game: games
-//             ) {
-//            for (GoalScore gs: goalScores
-//                 ) {
-//                if (gs.getGame().getGame_id().equals(game.getGame_id())){
-//                    continue;
-//                }else {
-//                    gamesFinal.add(game);
-//                }
-//            }
-//        }
-
-
         return games;
     }
 

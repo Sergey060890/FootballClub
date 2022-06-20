@@ -4,6 +4,7 @@ servlet\gameServlet\DeleteGameServlet.class
 servlet\playerServlet\EditPlayerServlet.class
 servlet\playerServlet\StartLineUpServlet.class
 servlet\teamServlet\TeamServlet.class
+servlet\statsServlet\StatsAllGameTeamServlet.class
 servlet\gameServlet\MatchServlet.class
 servlet\playerServlet\PlayerServlet.class
 servlet\gameServlet\GameServlet.class
@@ -11,6 +12,7 @@ servlet\playerServlet\DeletePlayerServlet.class
 servlet\teamServlet\EditTeamServlet.class
 servlet\playerServlet\CreatePlayerServlet.class
 servlet\gameServlet\CreateGameServlet.class
+servlet\statsServlet\StatsTeamServlet.class
 servlet\teamServlet\DeleteTeamServlet.class
 servlet\gameServlet\EditGameServlet.class
 servlet\playerServlet\PlayerInformationServlet.class

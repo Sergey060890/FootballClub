@@ -1,10 +1,24 @@
 package managment.implementation;
 
+import footballclub.entity.Game;
+import managment.interfaces.GameService;
 import managment.interfaces.StatsService;
+import managment.interfaces.TeamService;
+
+import java.sql.SQLException;
+import java.util.Set;
 
 public class StatsServiceImpl implements StatsService {
+    public static final String WIN = "WIN";
+    public static final int COUNT_GAME = 0;
+    public static final String LOSE = "LOSE";
+    public static final String DRAW = "DRAW";
+    public static final int GOAL_SCORE = 0;
+    public static final int CARD = 0;
+    TeamService teamService = new TeamServiceImpl();
+    GameService gameService = new GameServiceImpl();
 
-//    @Override
+    //    @Override
 //    public String statsPlayer(Player player) {
 //        System.out.println("********Player stats********");
 //        System.out.println("Player: " + player.getPlayer_name() + " "
@@ -64,81 +78,93 @@ public class StatsServiceImpl implements StatsService {
 //
 //    }
 //
-//    @Override
-//    public String statsTeam(Team team) {
-//        System.out.println("********Team stats********");
-//        System.out.println("Team: " + team.getTeam_name());
-//        System.out.println("City: " + team.getCity());
-//        System.out.println("Country " + team.getCountry());
-//        System.out.println("---------------------------");
-//        int countGame = 0;
-//        for (Game g : GameServiceImpl.games
-//        ) {
-//            if (g.getTeamGame() == team) {
-//                countGame++;
-//            }
-//        }
-//        System.out.println("Total games: " + countGame);
-//        System.out.println("---------------------------");
-//        System.out.println("WIN GAMES: ");
-//        int countGameWin = 0;
-//        for (Game g : GameServiceImpl.games
-//        ) {
-//            if (g.getTeamGame() == team && g.getResult() == RESULT_GAME_WIN) {
-//                System.out.println(g.getOpponent_name() + " "
-//                        + g.getGoal_score() +
-//                        ":" + g.getGoals_conceded());
-//                countGameWin++;
-//            }
-//        }
-//        System.out.println("TOTAL WIN: " + countGameWin);
-//        System.out.println("---------------------------");
-//
-//        System.out.println("DRAW GAMES: ");
-//        int countGameDraw = 0;
-//        for (Game g : GameServiceImpl.games
-//        ) {
-//            if (g.getTeamGame() == team && g.getResult() == RESULT_GAME_DRAW) {
-//                System.out.println(g.getOpponent_name() + " " + g.getGoal_score() +
-//                        ":" + g.getGoals_conceded());
-//                countGameDraw++;
-//            }
-//        }
-//        System.out.println("TOTAL DRAW: " + countGameDraw);
-//        System.out.println("---------------------------");
-//
-//        System.out.println("LOSE GAMES: ");
-//        int countGameLose = 0;
-//        for (Game g : GameServiceImpl.games
-//        ) {
-//            if (g.getTeamGame() == team && g.getResult() == RESULT_GAME_LOSE) {
-//                System.out.println(g.getOpponent_name() + " " + g.getGoal_score() +
-//                        ":" + g.getGoals_conceded());
-//                countGameDraw++;
-//            }
-//        }
-//        System.out.println("TOTAL LOSE: " + countGameLose);
-//        System.out.println("---------------------------");
-//
-//        int countGoalScore = 0;
-//        for (Game g : GameServiceImpl.games
-//        ) {
-//            if (g.getTeamGame() == team) {
-//                countGoalScore += g.getGoal_score();
-//            }
-//        }
-//        System.out.println("Goal score: " + countGoalScore);
-//        System.out.println("---------------------------");
-//
-//        int countGoalConceded = 0;
-//        for (Game g : GameServiceImpl.games
-//        ) {
-//            if (g.getTeamGame() == team) {
-//                countGoalConceded += g.getGoals_conceded();
-//            }
-//        }
-//        System.out.println("Goal conceded: " + countGoalConceded);
-//        System.out.println("---------------------------");
-//        String str = team.toString();
-//        return str;
+    @Override
+    public Integer statsTeamCountGame(Integer id) throws SQLException {
+        Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
+        return gameSet.size();
     }
+
+    @Override
+    public Integer statsTeamWinGame(Integer id) throws SQLException {
+        Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
+        int countGameWin = COUNT_GAME;
+        for (Game g : gameSet
+        ) {
+            if (g.getResult().equals(WIN)) {
+                countGameWin++;
+            }
+        }
+        return countGameWin;
+    }
+
+    @Override
+    public Integer statsTeamLoseGame(Integer id) throws SQLException {
+        Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
+        int countGameLose = COUNT_GAME;
+        for (Game g : gameSet
+        ) {
+            if (g.getResult().equals(LOSE)) {
+                countGameLose++;
+            }
+        }
+        return countGameLose;
+    }
+
+
+    @Override
+    public Integer statsTeamDrawGame(Integer id) throws SQLException {
+        Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
+        int countGameDraw = COUNT_GAME;
+        for (Game g : gameSet
+        ) {
+            if (g.getResult().equals(DRAW)) {
+                countGameDraw++;
+            }
+        }
+        return countGameDraw;
+    }
+
+
+    @Override
+    public Integer statsTeamGoalScore(Integer id) throws SQLException {
+        Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
+        int countGoalScore = GOAL_SCORE;
+        for (Game g : gameSet
+        ) {
+            countGoalScore += g.getGoal_score();
+        }
+        return countGoalScore;
+    }
+
+    @Override
+    public Integer statsTeamGoalConc(Integer id) throws SQLException {
+        Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
+        int countGoalConc = GOAL_SCORE;
+        for (Game g : gameSet
+        ) {
+            countGoalConc += g.getGoals_conceded();
+        }
+        return countGoalConc;
+    }
+
+    @Override
+    public Integer statsTeamYellowCard(Integer id) throws SQLException {
+        Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
+        int countYellowCard = CARD;
+        for (Game g : gameSet) {
+            countYellowCard += g.getYellow_card_score();
+        }
+        return countYellowCard;
+    }
+
+    @Override
+    public Integer statsTeamRedCard(Integer id) throws SQLException {
+        Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
+        int countRedCard = CARD;
+        for (Game g : gameSet
+        ) {
+            countRedCard += g.getRed_card_score();
+        }
+        return countRedCard;
+    }
+}
