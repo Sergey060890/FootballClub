@@ -80,7 +80,8 @@ public class StartLineUpServlet extends HttpServlet {
                         || gameService.goalkeeperСheck(playersGo) > INT2) {
                     response.sendRedirect(request.getContextPath() + START_LINEUP_ID + id);
                 } else {
-                    Game game = gameService.createGame(result.getTeamGame(),result.getOpponent_name());
+                    Game game = gameService.createGame(result.getTeamGame()
+                            ,result.getOpponent_name(),playersGo);
                     Set<Player> playersNoGo = gameService.
                             noStartGamePlayer(result.getTeamGame().getTeam_id(), players);
                     List<String> info = gameService.

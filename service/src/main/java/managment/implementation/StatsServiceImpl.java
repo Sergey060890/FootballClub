@@ -1,43 +1,125 @@
 package managment.implementation;
 
 import footballclub.entity.Game;
+import footballclub.entity.GoalConceded;
+import footballclub.entity.GoalScore;
+import footballclub.entity.Player;
+import footballclub.entity.RedCard;
+import footballclub.entity.YellowCard;
 import managment.interfaces.GameService;
+import managment.interfaces.GoalConcededService;
+import managment.interfaces.GoalScoreService;
+import managment.interfaces.PlayerService;
+import managment.interfaces.RedCardService;
 import managment.interfaces.StatsService;
-import managment.interfaces.TeamService;
+import managment.interfaces.YellowCardService;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Set;
 
 public class StatsServiceImpl implements StatsService {
     public static final String WIN = "WIN";
-    public static final int COUNT_GAME = 0;
     public static final String LOSE = "LOSE";
     public static final String DRAW = "DRAW";
-    public static final int GOAL_SCORE = 0;
-    public static final int CARD = 0;
-    TeamService teamService = new TeamServiceImpl();
-    GameService gameService = new GameServiceImpl();
+    public static final int COUNT= 0;
 
-    //    @Override
+    PlayerService playerService = new PlayerServiceImpl();
+    GameService gameService = new GameServiceImpl();
+    GoalScoreService goalScoreService = new GoalScoreImpl();
+    GoalConcededService goalConcededService = new GoalConcededServiceImpl();
+    YellowCardService yellowCardService = new YellowCareServiceImpl();
+    RedCardService redCardService = new RedCarServiceImpl();
+
+    @Override
+    public Integer statsPlayerCountStartGame(Integer id) throws SQLException {
+        Player player = playerService.findPlayerById(id);
+        Set<Game> gameSet = gameService
+                .showAllGameTeamInfo(player.getTeamPlayer().getTeam_id());
+        int count = COUNT;
+        for (Game g : gameSet
+        ) {
+            for (Player pl : g.getPlayers()
+            ) {
+                if (pl.getPlayer_id().equals(player.getPlayer_id())) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public Integer statsPlayerCountAllGame(Integer id) throws SQLException {
+        Integer countStartGame = statsPlayerCountStartGame(id);
+        Player player = playerService.findPlayerById(id);
+        Set<Game> gameSet = gameService
+                .showAllGameTeamInfo(player.getTeamPlayer().getTeam_id());
+        int countAllGame = gameSet.size() - countStartGame;
+        return countAllGame;
+    }
+
+    @Override
+    public Integer statsPlayerAllGoal(Integer id) throws SQLException {
+        Player player = playerService.findPlayerById(id);
+        List<GoalScore> goalScores = goalScoreService.showAllGoalInfo();
+        int countGoalPlayer = COUNT;
+        for (GoalScore goal : goalScores
+        ) {
+            if (goal.getPlayer().getPlayer_id().equals(player.getPlayer_id())) {
+                countGoalPlayer++;
+
+            }
+        }
+        return countGoalPlayer;
+    }
+
+    @Override
+    public Integer statsGoalkeeperConcededGoal(Integer id) throws SQLException {
+        Player player = playerService.findPlayerById(id);
+        List<GoalConceded> goalConcededs = goalConcededService.showAllGoalConcededInfo();
+        int countConcededPlayer = COUNT;
+        for (GoalConceded goal : goalConcededs
+        ) {
+            if (goal.getPlayer().getPlayer_id().equals(player.getPlayer_id())) {
+                countConcededPlayer++;
+            }
+        }
+        return countConcededPlayer;
+    }
+
+    @Override
+    public Integer statsYellowCard(Integer id) throws SQLException {
+        Player player = playerService.findPlayerById(id);
+        List<YellowCard> yellowCards = yellowCardService.showAllYellowCardInfo();
+        int countYellowCard = COUNT;
+        for (YellowCard yc : yellowCards
+        ) {
+            if (yc.getPlayer().getPlayer_id().equals(player.getPlayer_id())) {
+                countYellowCard++;
+            }
+        }
+        return countYellowCard;
+    }
+
+    @Override
+    public Integer statsRedCard(Integer id) throws SQLException {
+        Player player = playerService.findPlayerById(id);
+        List<RedCard> redCards = redCardService.showAllRedCardInfo();
+        int countRedCard = COUNT;
+        for (RedCard rc : redCards
+        ) {
+            if (rc.getPlayer().getPlayer_id().equals(player.getPlayer_id())) {
+               countRedCard++;
+            }
+        }
+        return countRedCard;
+    }
+
+
+
+//        @Override
 //    public String statsPlayer(Player player) {
-//        System.out.println("********Player stats********");
-//        System.out.println("Player: " + player.getPlayer_name() + " "
-//                + player.getPlayer_surname());
-//        System.out.println("Team: " + player.getTeamPlayer().getTeam_name() + " "
-//                + player.getTeamPlayer().getCity());
-//
-//        int countMatch = 0;
-//        for (Game g : GameServiceImpl.games
-//        ) {
-//            for (Player pl : g.getPlayers()
-//            ) {
-//                if (pl.getPlayer_surname() ==
-//                        player.getPlayer_surname()) {
-//                    countMatch++;
-//                }
-//            }
-//        }
-//        System.out.println("Total games: " + countMatch);
 //
 //        System.out.println("Goals:");
 //        int countPlayerGoles = 0;
@@ -77,7 +159,7 @@ public class StatsServiceImpl implements StatsService {
 //        return str;
 //
 //    }
-//
+
     @Override
     public Integer statsTeamCountGame(Integer id) throws SQLException {
         Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
@@ -87,7 +169,7 @@ public class StatsServiceImpl implements StatsService {
     @Override
     public Integer statsTeamWinGame(Integer id) throws SQLException {
         Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
-        int countGameWin = COUNT_GAME;
+        int countGameWin = COUNT;
         for (Game g : gameSet
         ) {
             if (g.getResult().equals(WIN)) {
@@ -100,7 +182,7 @@ public class StatsServiceImpl implements StatsService {
     @Override
     public Integer statsTeamLoseGame(Integer id) throws SQLException {
         Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
-        int countGameLose = COUNT_GAME;
+        int countGameLose = COUNT;
         for (Game g : gameSet
         ) {
             if (g.getResult().equals(LOSE)) {
@@ -114,7 +196,7 @@ public class StatsServiceImpl implements StatsService {
     @Override
     public Integer statsTeamDrawGame(Integer id) throws SQLException {
         Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
-        int countGameDraw = COUNT_GAME;
+        int countGameDraw = COUNT;
         for (Game g : gameSet
         ) {
             if (g.getResult().equals(DRAW)) {
@@ -128,7 +210,7 @@ public class StatsServiceImpl implements StatsService {
     @Override
     public Integer statsTeamGoalScore(Integer id) throws SQLException {
         Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
-        int countGoalScore = GOAL_SCORE;
+        int countGoalScore = COUNT;
         for (Game g : gameSet
         ) {
             countGoalScore += g.getGoal_score();
@@ -139,7 +221,7 @@ public class StatsServiceImpl implements StatsService {
     @Override
     public Integer statsTeamGoalConc(Integer id) throws SQLException {
         Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
-        int countGoalConc = GOAL_SCORE;
+        int countGoalConc = COUNT;
         for (Game g : gameSet
         ) {
             countGoalConc += g.getGoals_conceded();
@@ -150,7 +232,7 @@ public class StatsServiceImpl implements StatsService {
     @Override
     public Integer statsTeamYellowCard(Integer id) throws SQLException {
         Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
-        int countYellowCard = CARD;
+        int countYellowCard = COUNT;
         for (Game g : gameSet) {
             countYellowCard += g.getYellow_card_score();
         }
@@ -160,7 +242,7 @@ public class StatsServiceImpl implements StatsService {
     @Override
     public Integer statsTeamRedCard(Integer id) throws SQLException {
         Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
-        int countRedCard = CARD;
+        int countRedCard = COUNT;
         for (Game g : gameSet
         ) {
             countRedCard += g.getRed_card_score();

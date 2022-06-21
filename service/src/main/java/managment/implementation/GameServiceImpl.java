@@ -59,7 +59,7 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public Game createGame(Team team,
-                           String opponentTeam) throws SQLException {
+                           String opponentTeam,Set<Player> players) throws SQLException {
         int goalS = random.randomGoal();
         int goalC = random.randomGoal();
         Game game = Game.builder()
@@ -70,6 +70,7 @@ public class GameServiceImpl implements GameService {
                 .result(random.randomResult(goalS, goalC))
                 .yellow_card_score(random.randomYellowCardScore())
                 .red_card_score(random.randomRedCardScore())
+                .players(players)
                 .build();
         enityDaoImplGame.create(game);
         return game;
@@ -87,12 +88,14 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Game addPlayersInGame(Integer idGame, Set<Player> players) throws SQLException {
+    public Game addPlayersInStartGame(Integer idGame, Set<Player> players) throws SQLException {
         Game game = enityDaoImplGame.findOne(idGame);
         game.setPlayers(players);
         enityDaoImplGame.update(game);
         return game;
     }
+
+
 
     @Override
     public List<GameDTO> findAll() {

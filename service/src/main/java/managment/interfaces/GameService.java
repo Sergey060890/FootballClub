@@ -20,13 +20,13 @@ public interface GameService {
     /**
      * Create game
      */
-    Game createGame(Team team, String opponentTeam) throws SQLException;
+    Game createGame(Team team, String opponentTeam,Set<Player> players) throws SQLException;
 
     Game createGameNoPlayers(Team team,
                              String opponentTeam);
 
 
-    Game addPlayersInGame(Integer idGame, Set<Player> players) throws SQLException;
+    Game addPlayersInStartGame(Integer idGame, Set<Player> players) throws SQLException;
 
     /**
      * Create Goal score

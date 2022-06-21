@@ -8,6 +8,18 @@ public interface StatsService {
 //     */
 //    String statsPlayer(Player player);
 
+    Integer statsPlayerCountStartGame(Integer id) throws SQLException;
+
+    Integer statsPlayerCountAllGame(Integer id) throws SQLException;
+
+    Integer statsPlayerAllGoal(Integer id) throws SQLException;
+
+    Integer statsGoalkeeperConcededGoal(Integer id) throws SQLException;
+
+    Integer statsYellowCard(Integer id) throws SQLException;
+
+    Integer statsRedCard(Integer id) throws SQLException;
+
     /**
      * Team statistics
      */
