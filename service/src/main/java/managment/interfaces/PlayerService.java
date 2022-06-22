@@ -1,6 +1,6 @@
 package managment.interfaces;
 
-import DTO.PlayerDTO;
+import dto.PlayerDTO;
 import footballclub.entity.Player;
 import footballclub.entity.Team;
 

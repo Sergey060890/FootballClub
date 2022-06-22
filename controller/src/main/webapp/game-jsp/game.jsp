@@ -7,7 +7,7 @@
 --%>
 <%@ page import="footballclub.entity.Team" %>
 <%@ page import="java.util.List" %>
-<%@ page import="DTO.TeamDTO" %>
+<%@ page import="dto.TeamDTO" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="footballclub.entity.Player" %>
 <%@ page import="footballclub.entity.Game" %>

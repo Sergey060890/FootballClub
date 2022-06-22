@@ -26,10 +26,10 @@ public class StatsServiceImpl implements StatsService {
 
     PlayerService playerService = new PlayerServiceImpl();
     GameService gameService = new GameServiceImpl();
-    GoalScoreService goalScoreService = new GoalScoreImpl();
+    GoalScoreService goalScoreService = new GoalScoreServiceImpl();
     GoalConcededService goalConcededService = new GoalConcededServiceImpl();
     YellowCardService yellowCardService = new YellowCareServiceImpl();
-    RedCardService redCardService = new RedCarServiceImpl();
+    RedCardService redCardService = new RedCardServiceImpl();
 
     @Override
     public Integer statsPlayerCountStartGame(Integer id) throws SQLException {
@@ -51,12 +51,10 @@ public class StatsServiceImpl implements StatsService {
 
     @Override
     public Integer statsPlayerCountAllGame(Integer id) throws SQLException {
-        Integer countStartGame = statsPlayerCountStartGame(id);
         Player player = playerService.findPlayerById(id);
         Set<Game> gameSet = gameService
                 .showAllGameTeamInfo(player.getTeamPlayer().getTeam_id());
-        int countAllGame = gameSet.size() - countStartGame;
-        return countAllGame;
+        return gameSet.size();
     }
 
     @Override

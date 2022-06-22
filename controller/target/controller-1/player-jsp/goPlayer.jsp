@@ -38,7 +38,7 @@
 
             <tr>
                 <td>
-                    <center>${info}</center>
+                    <center><p>${info}</p></center>
                 </td>
 
             </tr>

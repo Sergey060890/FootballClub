@@ -1,7 +1,7 @@
 package managment.interfaces;
 
 
-import DTO.GameDTO;
+import dto.GameDTO;
 import footballclub.entity.Game;
 import footballclub.entity.GoalConceded;
 import footballclub.entity.GoalScore;

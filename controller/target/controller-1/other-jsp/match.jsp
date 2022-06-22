@@ -76,8 +76,6 @@
         <article id="hero-1" style="--i: 5">
             <div class="hero-info">
                 <table border="3" width="50%">
-
-                    <%--                    <caption><b>MATCH</b></caption>--%>
                     <tr>
 
                         <th>

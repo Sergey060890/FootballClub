@@ -1,7 +1,7 @@
 package managment.implementation;
 
-import DTO.ResultDTO;
-import DTO.mapper.ResultMapper;
+import dto.ResultDTO;
+import dto.mapper.ResultMapper;
 import footballclub.dao.implementations.EntityDaoImplResult;
 import footballclub.entity.Result;
 import footballclub.entity.Team;

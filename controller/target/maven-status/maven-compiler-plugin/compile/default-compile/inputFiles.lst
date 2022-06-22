@@ -4,6 +4,7 @@ D:\FootballClub\controller\src\main\java\servlet\teamServlet\CreateTeamServlet.j
 D:\FootballClub\controller\src\main\java\servlet\teamServlet\EditTeamServlet.java
 D:\FootballClub\controller\src\main\java\servlet\playerServlet\DeletePlayerServlet.java
 D:\FootballClub\controller\src\main\java\servlet\playerServlet\StartLineUpServlet.java
+D:\FootballClub\controller\src\main\java\servlet\statsServlet\StatsPlayerServlet.java
 D:\FootballClub\controller\src\main\java\servlet\gameServlet\MatchServlet.java
 D:\FootballClub\controller\src\main\java\servlet\playerServlet\PlayerServlet.java
 D:\FootballClub\controller\src\main\java\servlet\playerServlet\CreatePlayerServlet.java

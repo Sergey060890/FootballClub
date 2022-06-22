@@ -1,7 +1,7 @@
 package managment.implementation;
 
-import DTO.TeamDTO;
-import DTO.mapper.TeamMapper;
+import dto.TeamDTO;
+import dto.mapper.TeamMapper;
 import footballclub.dao.implementations.EnityDaoImplPlayer;
 import footballclub.dao.implementations.EnityDaoImplTeam;
 import footballclub.dao.interfaces.PlayerDao;

@@ -1,8 +1,8 @@
 package managment.implementation;
 
-import DTO.GameDTO;
-import DTO.mapper.GameMapper;
-import Random.RandomResult;
+import dto.GameDTO;
+import dto.mapper.GameMapper;
+import random.RandomResult;
 import footballclub.dao.implementations.EnityDaoImplGame;
 import footballclub.dao.implementations.EnityDaoImplGoalConceded;
 import footballclub.dao.implementations.EnityDaoImplGoalScore;
@@ -32,10 +32,10 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class GameServiceImpl implements GameService {
-    public static final String RED_CARD = " Red card! ";
-    public static final String YELLOW_CARD = " Yellow card! ";
+    public static final String RED_CARD = "' Red card! ";
+    public static final String YELLOW_CARD = "' Yellow card! ";
     public static final String STRING = ":";
-    public static final String GOAL_MISSED = " Goal missed! ";
+    public static final String GOAL_MISSED = "' Goal missed! ";
     public static final String GOOOOAAAAL = "' GOOOOAAAAL! ";
     public static final String STRING1 = " ";
     public static final String GK = "GK";
@@ -275,16 +275,16 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public List<String> showGameAndStats(GameService service, Game game, Set<Player> start, Set<Player> noStart) {
-        if (game.getGoal_score() != 0) {
-            for (int i = 1; i <= game.getGoal_score(); i++) {
-                service.createGoalScore(game, start);
-            }
-        }
-
         if (game.getGoals_conceded() != 0) {
             for (int i = 1; i <= game.getGoals_conceded(); i++) {
 
                 service.createGoalConceded(game, start);
+            }
+        }
+
+        if (game.getGoal_score() != 0) {
+            for (int i = 1; i <= game.getGoal_score(); i++) {
+                service.createGoalScore(game, start);
             }
         }
 

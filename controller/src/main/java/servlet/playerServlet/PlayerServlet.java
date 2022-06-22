@@ -1,6 +1,6 @@
 package servlet.playerServlet;
 
-import DTO.TeamDTO;
+import dto.TeamDTO;
 import managment.implementation.TeamServiceImpl;
 import managment.interfaces.TeamService;
 

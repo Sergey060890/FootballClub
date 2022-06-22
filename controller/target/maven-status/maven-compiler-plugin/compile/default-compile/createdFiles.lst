@@ -10,6 +10,7 @@ servlet\playerServlet\PlayerServlet.class
 servlet\gameServlet\GameServlet.class
 servlet\playerServlet\DeletePlayerServlet.class
 servlet\teamServlet\EditTeamServlet.class
+servlet\statsServlet\StatsPlayerServlet.class
 servlet\playerServlet\CreatePlayerServlet.class
 servlet\gameServlet\CreateGameServlet.class
 servlet\statsServlet\StatsTeamServlet.class

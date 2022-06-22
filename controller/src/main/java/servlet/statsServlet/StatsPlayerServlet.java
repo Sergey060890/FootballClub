@@ -37,8 +37,8 @@ public class StatsPlayerServlet extends HttpServlet {
                 int countRedCardPlayer = statsService.statsRedCard(id);
                 request.setAttribute(ID, id);
                 request.setAttribute("player", player);
-                request.setAttribute("countGame", countGamePlayer);
-                request.setAttribute("countStartGame", countGameStart);
+                request.setAttribute("countGamePlayer", countGamePlayer);
+                request.setAttribute("countStartGamePlayer", countGameStart);
                 request.setAttribute("countGoalPlayer", countCoalPlayer);
                 request.setAttribute("countGoalConcededPlayer", countGoalConcededPlayer);
                 request.setAttribute("countYellowCardPlayer", countYellowCardPlayer);
